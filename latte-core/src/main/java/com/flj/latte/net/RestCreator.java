@@ -15,7 +15,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 public class RestCreator {
-    private static final String TAG = "way";
     private static final class ParamsHolder{
         public static final WeakHashMap<String,Object> PARAMS = new WeakHashMap<>();
     }
