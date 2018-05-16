@@ -17,7 +17,7 @@ import okhttp3.RequestBody;
 
 public class RestClientBuilder {
     private  String mUrl;
-    private  Map<String,Object> mParams;
+    private  final Map<String,Object> PARAMS = RestCreator.getParams();
     private  IRequest mIRequest;
     private  ISuccess mISuccess;
     private  IError mIError;
@@ -30,16 +30,14 @@ public class RestClientBuilder {
         this.mUrl = url;
         return this;
     }
-    public  final RestClientBuilder params(Map<String,Object> params){
-        this.mParams = params;
+    public  final RestClientBuilder params(WeakHashMap<String,Object> params){
+       PARAMS.putAll(params);
         return this;
     }
 
     public  final RestClientBuilder params(String key,Object value){
-        if (mParams ==null){
-            mParams = new WeakHashMap<>();
-        }
-        this.mParams.put(key,value);
+
+      PARAMS.put(key,value);
         return this;
     }
 
@@ -47,7 +45,10 @@ public class RestClientBuilder {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"),raw);
         return this;
     }
-
+    public  final RestClientBuilder onRequest(IRequest iRequest){
+        this.mIRequest = iRequest;
+        return this;
+    }
     public  final RestClientBuilder success(ISuccess iSuccess){
         this.mISuccess = iSuccess;
         return this;
@@ -61,10 +62,8 @@ public class RestClientBuilder {
         return this;
     }
 
-    private Map<String,Object> checkParams(){
-        if (mParams ==null){
-            mParams = new WeakHashMap<>();
-        }
-        return mParams;
+
+    public final RestClient builder(){
+        return new RestClient(mUrl,PARAMS,mIRequest,mISuccess,mIError,mIFailure,mBody);
     }
 }

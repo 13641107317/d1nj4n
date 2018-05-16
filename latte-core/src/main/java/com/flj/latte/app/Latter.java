@@ -10,19 +10,23 @@ import java.util.WeakHashMap;
 
 public final class Latter {
 
-    public static Configurator init(Context context){
-        getConfigurator().put(ConfigKeys.APPLICATION_CONTEXT.name(),context.getApplicationContext());
+    public static Configurator init(Context context) {
+        Configurator.getInstance()
+                .getLatterConfigs()
+                .put(ConfigKeys.APPLICATION_CONTEXT.name(), context.getApplicationContext());
         return Configurator.getInstance();
     }
 
-    private static WeakHashMap<String,Object> getConfigurator(){
-        return Configurator.getInstance().getLatterConfigs();
+    public static Configurator getConfigurator() {
+        return Configurator.getInstance();
     }
+
     public static <T> T getConfiguration(Object key) {
-        return (T) getConfigurator().get(key);
+        return getConfigurator().getConfiguration(key);
     }
     public static Context getApplication(){
-        return (Context) getConfigurator().get(ConfigKeys.APPLICATION_CONTEXT.name());
+        return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
+
 
 }

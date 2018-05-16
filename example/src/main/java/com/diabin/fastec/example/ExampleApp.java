@@ -9,9 +9,8 @@ public class ExampleApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Latter.
-                init(this)
+        Latter.init(this)
                 .withApiHost("http://127.0.0.1/")
-                .confinurator();
+                .configure();
     }
 }
