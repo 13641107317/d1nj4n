@@ -11,7 +11,7 @@ public class ExampleApp extends Application {
         super.onCreate();
         Latter.
                 init(this)
-                .withApiHost("http://127.0.0.1")
+                .withApiHost("http://127.0.0.1/")
                 .confinurator();
     }
 }
