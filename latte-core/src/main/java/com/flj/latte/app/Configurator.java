@@ -1,18 +1,21 @@
 package com.flj.latte.app;
 
+import android.util.Log;
+
 import java.util.HashMap;
-import java.util.WeakHashMap;
 
 /**
  * Created by mac on 2018/5/15.
  */
 
 public class Configurator {
-
+    private static final String TAG = "way";
     private static final HashMap<Object, Object> LATTER_CONFIGS = new HashMap<>();
+
 
     private Configurator() {
         LATTER_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
+        Log.i(TAG, "Configurator: " + LATTER_CONFIGS.get(ConfigKeys.CONFIG_READY.name()));
     }
 
     public static Configurator getInstance() {
@@ -38,7 +41,8 @@ public class Configurator {
     }
 
     private void checkConfigurator() {
-        final boolean isReady = (boolean) LATTER_CONFIGS.get(ConfigKeys.CONFIG_READY);
+        Log.i(TAG, "checkConfigurator: " + LATTER_CONFIGS.get(ConfigKeys.CONFIG_READY.name()));
+        final boolean isReady = (boolean) LATTER_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
         if (!isReady) {
             throw new RuntimeException("configurator is not ready,call configurator");
         }
