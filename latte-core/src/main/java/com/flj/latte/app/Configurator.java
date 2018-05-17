@@ -40,6 +40,7 @@ public class Configurator {
     }
 
     public final void configure() {
+        initIcons();
         LATTER_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
     }
 

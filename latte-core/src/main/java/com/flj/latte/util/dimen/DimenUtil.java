@@ -1,4 +1,4 @@
-package com.flj.latte.util;
+package com.flj.latte.util.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
