@@ -7,6 +7,7 @@ import com.flj.latte.net.callback.IFailure;
 import com.flj.latte.net.callback.IRequest;
 import com.flj.latte.net.callback.ISuccess;
 import com.flj.latte.net.callback.RequestCallBacks;
+import com.flj.latte.net.download.DownLoadHandler;
 import com.flj.latte.ui.LatteLoader;
 import com.flj.latte.ui.LoaderStyle;
 
@@ -32,12 +33,20 @@ public class RestClient {
     private final IError ERROR;
     private final IFailure FAILURE;
     private final RequestBody BODY;
+    //上传文件
     private final File FILE;
+    //进度条
     private final LoaderStyle LOADER_STYLE;
+    //文件下载
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
     private final Context CONTEXT;
 
     public RestClient(String url,
-                      Map<String, Object> params, IRequest request, File file,
+                      Map<String, Object> params, IRequest request,
+                      File file, String download_dir,
+                      String extension, String name,
                       ISuccess success, IError error,
                       IFailure failure, RequestBody body,
                       Context context, LoaderStyle loader_style) {
@@ -45,6 +54,9 @@ public class RestClient {
         PARAMS.putAll(params);
         this.REQUEST = request;
         this.FILE = file;
+        this.DOWNLOAD_DIR = download_dir;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.SUCCESS = success;
         this.ERROR = error;
         this.FAILURE = failure;
@@ -132,8 +144,13 @@ public class RestClient {
         }
 
     }
-
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+    public final void downLoad() {
+        new DownLoadHandler(URL,REQUEST,SUCCESS,ERROR,FAILURE,DOWNLOAD_DIR,EXTENSION,NAME)
+                .handlerDownLoad();
+
     }
 }
