@@ -62,6 +62,10 @@ public class SaveFileTask extends AsyncTask<Object, Void, File> {
         }
     }
 
+    /**
+     * apk安装
+     * @param file
+     */
     private void autoInstallApk(File file) {
         if (FileUtil.getExtension(file.getPath()).equals(".apk")) {
             final Intent intent = new Intent();

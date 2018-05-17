@@ -2,7 +2,10 @@ package com.flj.latte.app;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import okhttp3.Interceptor;
 
 /**
  * Created by mac on 2018/5/15.
@@ -12,6 +15,7 @@ public class Configurator {
     private static final String TAG = "way";
     private static final HashMap<Object, Object> LATTER_CONFIGS = new HashMap<>();
 
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
         LATTER_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
@@ -39,9 +43,18 @@ public class Configurator {
         return this;
 
     }
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        LATTER_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(),INTERCEPTORS);
+        return this;
+    }
 
+    public final Configurator withInterceptorS(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        LATTER_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(),INTERCEPTORS);
+        return this;
+    }
     private void checkConfigurator() {
-        Log.i(TAG, "checkConfigurator: " + LATTER_CONFIGS.get(ConfigKeys.CONFIG_READY.name()));
         final boolean isReady = (boolean) LATTER_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
         if (!isReady) {
             throw new RuntimeException("configurator is not ready,call configurator");
