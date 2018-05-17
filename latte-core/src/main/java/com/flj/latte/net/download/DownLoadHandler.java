@@ -55,7 +55,7 @@ public class DownLoadHandler {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     final ResponseBody body = response.body();
-                    final SaveFileTask fileTask = new SaveFileTask(REQUEST, SUCCESS, ERROR, FAILURE);
+                    final SaveFileTask fileTask = new SaveFileTask(REQUEST, SUCCESS);
                     fileTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, DOWNLOAD_DIR, EXTENSION, body, NAME);
                     //这里一定要判断文件是否下载完全
                     if (fileTask.isCancelled()) {

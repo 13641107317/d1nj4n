@@ -1,6 +1,10 @@
 package com.flj.latte.app;
 
+import android.os.Handler;
 import android.util.Log;
+
+import com.joanzapata.iconify.IconFontDescriptor;
+import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,12 +18,13 @@ import okhttp3.Interceptor;
 public class Configurator {
     private static final String TAG = "way";
     private static final HashMap<Object, Object> LATTER_CONFIGS = new HashMap<>();
-
+    private static final Handler HANDLER = new Handler();
+    private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
         LATTER_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
-        Log.i(TAG, "Configurator: " + LATTER_CONFIGS.get(ConfigKeys.CONFIG_READY.name()));
+        LATTER_CONFIGS.put(ConfigKeys.HANDLER.name(), HANDLER);
     }
 
     public static Configurator getInstance() {
@@ -42,6 +47,24 @@ public class Configurator {
         LATTER_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
         return this;
 
+    }
+    public final Configurator withLoaderDelayed(long delayed) {
+        LATTER_CONFIGS.put(ConfigKeys.LOADER_DELAYED.name(), delayed);
+        return this;
+    }
+
+    private void initIcons() {
+        if (ICONS.size() > 0) {
+            final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
+            for (int i = 1; i < ICONS.size(); i++) {
+                initializer.with(ICONS.get(i));
+            }
+        }
+    }
+
+    public final Configurator withIcon(IconFontDescriptor descriptor) {
+        ICONS.add(descriptor);
+        return this;
     }
     public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);

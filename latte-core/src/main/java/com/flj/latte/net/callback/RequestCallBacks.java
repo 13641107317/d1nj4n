@@ -3,6 +3,9 @@ package com.flj.latte.net.callback;
 import android.content.Context;
 import android.os.Handler;
 
+import com.flj.latte.app.ConfigKeys;
+import com.flj.latte.app.Latter;
+import com.flj.latte.net.RestCreator;
 import com.flj.latte.ui.LatteLoader;
 import com.flj.latte.ui.LoaderStyle;
 
@@ -62,13 +65,15 @@ public class RequestCallBacks implements Callback<String> {
         stopLoading();
     }
     private void stopLoading(){
+        final long delayed = Latter.getConfiguration(ConfigKeys.LOADER_DELAYED.name());
         if (LOADER_STYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    RestCreator.getParams().clear();
                     LatteLoader.stopLoading();
                 }
-            }, 1000);
+            }, delayed);
 
         }
     }

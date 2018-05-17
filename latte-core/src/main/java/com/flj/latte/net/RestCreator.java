@@ -17,33 +17,36 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 public class RestCreator {
+    /**
+     * 参数容器
+     */
     private static final class ParamsHolder {
         public static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     }
-
     public static WeakHashMap<String, Object> getParams() {
         return ParamsHolder.PARAMS;
     }
-
     public static RestService getRestService() {
         return RestServiceHolder.REST_SERVICE;
     }
-
-    private static final class RetorfitHolder {
+    /**
+     * 构建全局retrofit客户端
+     */
+    private static final class RetrofitHolder {
         private static final String BASE_URL = Latter.getConfiguration(ConfigKeys.API_HOST.name());
-
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }
-
+    /**
+     * 构建okhttp
+     */
     private static final class OKHttpHolder {
         private static final int TIME_OUT = 60;
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
         private static final ArrayList<Interceptor> INTERCEPTORS = Latter.getConfiguration(ConfigKeys.INTERCEPTOR.name());
-
         //添加拦截器
         private static OkHttpClient.Builder addInterceptor() {
             if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
@@ -53,14 +56,16 @@ public class RestCreator {
             }
             return BUILDER;
         }
-
         private static final OkHttpClient OK_HTTP_CLIENT = addInterceptor()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .build();
     }
 
+    /**
+     * service接口
+     */
     private static final class RestServiceHolder {
         private static final RestService REST_SERVICE =
-                RetorfitHolder.RETROFIT_CLIENT.create(RestService.class);
+                RetrofitHolder.RETROFIT_CLIENT.create(RestService.class);
     }
 }
