@@ -25,7 +25,7 @@ public final class Latter {
         return getConfigurator().getConfiguration(key);
     }
     public static Context getApplication(){
-        return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
+        return getConfiguration(ConfigKeys.APPLICATION_CONTEXT.name());
     }
 
 

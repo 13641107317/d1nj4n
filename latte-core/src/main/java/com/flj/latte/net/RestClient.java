@@ -1,10 +1,14 @@
 package com.flj.latte.net;
 
+import android.content.Context;
+
 import com.flj.latte.net.callback.IError;
 import com.flj.latte.net.callback.IFailure;
 import com.flj.latte.net.callback.IRequest;
 import com.flj.latte.net.callback.ISuccess;
 import com.flj.latte.net.callback.RequestCallBacks;
+import com.flj.latte.ui.LatteLoader;
+import com.flj.latte.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -26,10 +30,13 @@ public class RestClient {
     private final IFailure FAILURE;
     private final RequestBody BODY;
 
+    private final LoaderStyle LOADER_STYLE;
+    private final Context CONTEXT;
     public RestClient(String url,
                       Map<String, Object> params, IRequest request,
                       ISuccess success, IError error,
-                      IFailure failure, RequestBody body) {
+                      IFailure failure, RequestBody body,
+                      Context context,LoaderStyle loader_style) {
         this.URL = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -37,6 +44,8 @@ public class RestClient {
         this.ERROR = error;
         this.FAILURE = failure;
         this.BODY = body;
+        this.CONTEXT = context;
+        this.LOADER_STYLE = loader_style;
     }
 
     public static RestClientBuilder builder() {
@@ -50,7 +59,9 @@ public class RestClient {
         if (REQUEST != null) {
             REQUEST.onRequestStart();
         }
-
+        if (LOADER_STYLE!=null){
+            LatteLoader.showLoading(CONTEXT,LOADER_STYLE);
+        }
         switch (method) {
             case GET:
                 call = restService.get(URL, PARAMS);
@@ -73,7 +84,7 @@ public class RestClient {
     }
 
     private Callback<String> getRequestCallBack() {
-        return new RequestCallBacks(REQUEST, SUCCESS, ERROR, FAILURE);
+        return new RequestCallBacks(REQUEST, SUCCESS, ERROR, FAILURE,LOADER_STYLE);
     }
 
 

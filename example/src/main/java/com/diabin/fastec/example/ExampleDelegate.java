@@ -12,6 +12,7 @@ import com.flj.latte.net.RestClient;
 import com.flj.latte.net.callback.IError;
 import com.flj.latte.net.callback.IFailure;
 import com.flj.latte.net.callback.ISuccess;
+import com.flj.latte.ui.LatteLoader;
 
 
 /**
@@ -34,10 +35,11 @@ public class ExampleDelegate extends LatteDelegate {
     private void testRestClient() {
         RestClient.builder()
                 .url("http://news.baidu.com/")
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Log.i(TAG, "onSuccess: "+response);
+                       Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {
