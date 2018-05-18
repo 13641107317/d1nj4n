@@ -10,6 +10,7 @@ import com.flj.latte.delegates.LatteDelegate;
 
 import com.flj.latte.ec.launcher.LauncherDelegate;
 import com.flj.latte.ec.launcher.LauncherScrollDelegate;
+import com.flj.latte.ec.sign.SignUpDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
@@ -24,7 +25,7 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 
 
