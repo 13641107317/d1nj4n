@@ -7,7 +7,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
  * 启动页轮播
  */
 
-public class LauncherHolerCreator implements CBViewHolderCreator<LauncherHolder>{
+public class LauncherHolderCreator implements CBViewHolderCreator<LauncherHolder>{
     @Override
     public LauncherHolder createHolder() {
         return new LauncherHolder();

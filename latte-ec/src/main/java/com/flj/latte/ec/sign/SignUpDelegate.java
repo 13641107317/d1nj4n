@@ -1,16 +1,12 @@
 package com.flj.latte.ec.sign;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Toast;
 
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
@@ -37,7 +33,7 @@ public class SignUpDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_up_pw1)
     TextInputEditText mRePassWord;
 
-    private ISignListener mListener;
+    private ISignListener mListener = null;
     @OnClick(R2.id.bt_sign_up_reg)
     void onClickSignUp() {
         if (checkForm()) {

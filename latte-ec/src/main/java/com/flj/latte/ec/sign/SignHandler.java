@@ -2,14 +2,10 @@ package com.flj.latte.ec.sign;
 
 import android.util.Log;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.flj.latte.app.AccountManager;
 import com.flj.latte.ec.database.DataBaseManager;
 import com.flj.latte.ec.database.UserProFile;
-import com.flj.latte.util.log.LatteLogger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,12 +35,14 @@ public class SignHandler {
         listener.onSignUpSuccess();
     }
 
-    public static void onSignIn() {
+    public static void onSignIn(ISignListener iSignListener) {
 
         List<UserProFile> userProFiles = DataBaseManager.getDataBaseManager().getDao().loadAll();
         for (UserProFile user : userProFiles) {
 
             Log.i(TAG, "onSignIn: "+user);
         }
+        AccountManager.setSignState(true);
+        iSignListener.onSignInSuccess();
     }
 }

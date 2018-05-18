@@ -4,9 +4,11 @@ import com.flj.latte.util.storage.LattePreference;
 
 /**
  * Created by wp on 2018/5/18.
+ *
  */
 
 public class AccountManager {
+    //是否登录状态
     private enum Tag {
         SIGN_TAG
     }
