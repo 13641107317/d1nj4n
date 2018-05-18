@@ -3,7 +3,6 @@ package com.diabin.fastec.example;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,7 +11,6 @@ import com.flj.latte.net.RestClient;
 import com.flj.latte.net.callback.IError;
 import com.flj.latte.net.callback.IFailure;
 import com.flj.latte.net.callback.ISuccess;
-import com.flj.latte.ui.LatteLoader;
 
 
 /**

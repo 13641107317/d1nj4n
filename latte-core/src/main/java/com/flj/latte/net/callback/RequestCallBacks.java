@@ -1,13 +1,12 @@
 package com.flj.latte.net.callback;
 
-import android.content.Context;
 import android.os.Handler;
 
 import com.flj.latte.app.ConfigKeys;
 import com.flj.latte.app.Latter;
 import com.flj.latte.net.RestCreator;
-import com.flj.latte.ui.LatteLoader;
-import com.flj.latte.ui.LoaderStyle;
+import com.flj.latte.ui.loader.LatteLoader;
+import com.flj.latte.ui.loader.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

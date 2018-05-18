@@ -1,4 +1,4 @@
-package com.flj.latte.ui;
+package com.flj.latte.ui.loader;
 import android.content.Context;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.wang.avi.Indicator;

@@ -1,4 +1,4 @@
-package com.flj.latte.ui;
+package com.flj.latte.ui.loader;
 
 import com.wang.avi.indicators.BallBeatIndicator;
 import com.wang.avi.indicators.BallClipRotateIndicator;

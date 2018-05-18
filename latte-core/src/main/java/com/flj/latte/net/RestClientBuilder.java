@@ -5,7 +5,7 @@ import com.flj.latte.net.callback.IError;
 import com.flj.latte.net.callback.IFailure;
 import com.flj.latte.net.callback.IRequest;
 import com.flj.latte.net.callback.ISuccess;
-import com.flj.latte.ui.LoaderStyle;
+import com.flj.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;
