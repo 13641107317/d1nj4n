@@ -34,7 +34,7 @@ public class SignInDelegate extends LatteDelegate {
     void onClickSignIn() {
 
         if (checkForm()) {
-
+        SignHandler.onSignIn();
             Toast.makeText(getContext(),"验证通过",Toast.LENGTH_LONG).show();
         }
 

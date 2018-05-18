@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
 import com.flj.latte.delegates.LatteDelegate;
+import com.flj.latte.ec.database.UserProFile;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,6 +38,13 @@ public class SignUpDelegate extends LatteDelegate {
     @OnClick(R2.id.bt_sign_up_reg)
     void onClickSignUp() {
         if (checkForm()) {
+            UserProFile userProFile = new UserProFile();
+            userProFile.setName(mName.getText().toString().trim());
+            userProFile.setAddress(mEmail.getText().toString().trim());
+            userProFile.setAvatar(mPassWord.getText().toString().trim());
+            userProFile.setGender(mRePassWord.getText().toString().trim());
+            userProFile.setUserId(1L);
+            SignHandler.onSignUp(userProFile);
             Toast.makeText(getContext(), "注册成功", Toast.LENGTH_LONG).show();
         }
     }

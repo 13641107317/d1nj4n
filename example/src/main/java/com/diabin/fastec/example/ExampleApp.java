@@ -2,7 +2,9 @@ package com.diabin.fastec.example;
 
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
 import com.flj.latte.app.Latter;
+import com.flj.latte.ec.database.DataBaseManager;
 import com.flj.latte.ec.icon.FontEcModule;
 import com.flj.latte.net.interceptors.DebugInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
@@ -19,5 +21,17 @@ public class ExampleApp extends Application {
                 .withIcon(new FontEcModule())
                 .withLoaderDelayed(3000)
                 .configure();
+
+        //数据库初始化
+        DataBaseManager.getDataBaseManager().init(this);
+        initStetho();
+    }
+        private void initStetho() {
+//            Stetho.initializeWithDefaults(this);
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build());
     }
 }
