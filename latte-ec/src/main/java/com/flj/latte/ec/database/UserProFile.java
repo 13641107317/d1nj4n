@@ -57,4 +57,15 @@ public class UserProFile {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "UserProFile{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

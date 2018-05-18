@@ -24,7 +24,7 @@ public class ExampleApp extends Application {
 
         //数据库初始化
         DataBaseManager.getDataBaseManager().init(this);
-        initStetho();
+//        initStetho();
     }
         private void initStetho() {
 //            Stetho.initializeWithDefaults(this);

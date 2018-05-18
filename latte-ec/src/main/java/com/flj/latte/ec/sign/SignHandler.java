@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.flj.latte.app.AccountManager;
 import com.flj.latte.ec.database.DataBaseManager;
 import com.flj.latte.ec.database.UserProFile;
 import com.flj.latte.util.log.LatteLogger;
@@ -18,7 +19,12 @@ import java.util.List;
 public class SignHandler {
     private static final String TAG = "way";
 
-    public static void onSignUp(UserProFile response) {
+    /**
+     * 注册逻辑
+     * @param response
+     * @param listener 注册成功回调
+     */
+    public static void onSignUp(UserProFile response ,ISignListener listener) {
         //json解析
       /* final JSONObject profileJson =(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");
@@ -28,6 +34,9 @@ public class SignHandler {
         final String address = profileJson.getString("address");
         final UserProFile profile = new UserProFile(userId, name, avatar, gender, address);*/
         DataBaseManager.getDataBaseManager().getDao().insert(response);
+        //已经注册并登录成功
+        AccountManager.setSignState(true);
+        listener.onSignUpSuccess();
     }
 
     public static void onSignIn() {
@@ -35,7 +44,7 @@ public class SignHandler {
         List<UserProFile> userProFiles = DataBaseManager.getDataBaseManager().getDao().loadAll();
         for (UserProFile user : userProFiles) {
 
-            Log.i(TAG, "onSignIn: "+user.getUserId());
+            Log.i(TAG, "onSignIn: "+user);
         }
     }
 }

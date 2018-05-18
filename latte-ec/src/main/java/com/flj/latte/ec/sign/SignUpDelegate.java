@@ -1,5 +1,7 @@
 package com.flj.latte.ec.sign;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,6 +37,7 @@ public class SignUpDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_up_pw1)
     TextInputEditText mRePassWord;
 
+    private ISignListener mListener;
     @OnClick(R2.id.bt_sign_up_reg)
     void onClickSignUp() {
         if (checkForm()) {
@@ -43,9 +46,9 @@ public class SignUpDelegate extends LatteDelegate {
             userProFile.setAddress(mEmail.getText().toString().trim());
             userProFile.setAvatar(mPassWord.getText().toString().trim());
             userProFile.setGender(mRePassWord.getText().toString().trim());
-            userProFile.setUserId(1L);
-            SignHandler.onSignUp(userProFile);
-            Toast.makeText(getContext(), "注册成功", Toast.LENGTH_LONG).show();
+            userProFile.setUserId(3L);
+            SignHandler.onSignUp(userProFile,mListener);
+
         }
     }
     //跳转登录
@@ -53,6 +56,15 @@ public class SignUpDelegate extends LatteDelegate {
     void onClickStartSignUp() {
         start(new SignInDelegate());
     }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener){
+            mListener = (ISignListener) activity;
+        }
+    }
+
     private boolean checkForm() {
         final String name = mName.getText().toString();
         final String email = mEmail.getText().toString();
