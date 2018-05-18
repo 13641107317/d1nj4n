@@ -19,6 +19,7 @@ import butterknife.OnClick;
 
 /**
  * Created by wp on 2018/5/18.
+ * 注册
  */
 
 public class SignUpDelegate extends LatteDelegate {
@@ -32,15 +33,17 @@ public class SignUpDelegate extends LatteDelegate {
     TextInputEditText mPhone;
     @BindView(R2.id.edit_sign_up_pw1)
     TextInputEditText mRePassWord;
-    @BindView(R2.id.tv_sign_in)
-    AppCompatTextView mSignIn;
-    @BindView(R2.id.bt_sign_up_reg)
-    AppCompatButton mBtSign;
+
     @OnClick(R2.id.bt_sign_up_reg)
-    void onClickSignUp(){
-        if (checkForm()){
-            Toast.makeText(getContext(),"注册成功",Toast.LENGTH_LONG).show();
+    void onClickSignUp() {
+        if (checkForm()) {
+            Toast.makeText(getContext(), "注册成功", Toast.LENGTH_LONG).show();
         }
+    }
+    //跳转登录
+    @OnClick(R2.id.tv_sign_in)
+    void onClickStartSignUp() {
+        start(new SignInDelegate());
     }
     private boolean checkForm() {
         final String name = mName.getText().toString();
