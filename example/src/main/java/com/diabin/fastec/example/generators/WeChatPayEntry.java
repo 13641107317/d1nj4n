@@ -7,7 +7,7 @@ import com.flj.latte.wechat.templates.WPayEntryTemplate;
  * Created by wp on 2018/5/21.
  */
 @PayEntryGenerator(
-        packageName = "com.fastec.example",
+        packageName = "com.diabin.fastec.example",
         payEntryTemplate = WPayEntryTemplate.class
 )
 public interface WeChatPayEntry {

@@ -1,15 +1,23 @@
 package com.flj.latte.wechat.templates;
 
-import com.flj.latte.activities.ProxyActivity;
-import com.flj.latte.delegates.LatteDelegate;
+import com.flj.latte.wechat.BaseWXEntryActivity;
+import com.flj.latte.wechat.LatteWechat;
 
 /**
  * Created by wp on 2018/5/21.
  */
 
-public class WXEntryTemplate extends ProxyActivity {
+public class WXEntryTemplate extends BaseWXEntryActivity {
+
+
     @Override
-    public LatteDelegate setRootDelegate() {
-        return null;
+    protected void onResume() {
+        super.onResume();
+        finish();
+        overridePendingTransition(0, 0);
+    }
+    @Override
+    protected void onSignInSuccess(String userInfo) {
+        LatteWechat.getIntance().getmSignInCallback().onSignInSuccess(userInfo);
     }
 }

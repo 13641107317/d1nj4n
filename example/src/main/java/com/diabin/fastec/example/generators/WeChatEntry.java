@@ -7,7 +7,7 @@ import com.flj.latte.wechat.templates.WXEntryTemplate;
  * Created by wp on 2018/5/21.
  */
 @EntryGenerator(
-        packageName = "com.fastec.example",
+        packageName = "com.diabin.fastec.example",
         entryTemplate = WXEntryTemplate.class
 )
 public interface WeChatEntry {

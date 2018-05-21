@@ -7,8 +7,9 @@ import com.flj.latte.wechat.templates.AppRegisterTemplate;
  * Created by wp on 2018/5/21.
  */
 @AppRegisterGenerator(
-        packageName = "com.fastec.example",
+        packageName = "com.diabin.fastec.example",
         registerTemplate = AppRegisterTemplate.class
 )
 public interface AppRegister {
+
 }
