@@ -1,4 +1,4 @@
-package com.diabin.latte.annotations;
+package com.flj.latte.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
-public @interface EntryGenerator {
+public @interface AppRegisterGenerator {
     String packageName();
-    Class<?> entryTemplete();
+    Class<?> registerTemplate();
 }

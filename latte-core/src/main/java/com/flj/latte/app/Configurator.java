@@ -1,5 +1,7 @@
 package com.flj.latte.app;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
@@ -72,7 +74,18 @@ public class Configurator {
         LATTER_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(),INTERCEPTORS);
         return this;
     }
-
+    public final Configurator withWechatAppId(String appId) {
+        LATTER_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID.name(),appId);
+        return this;
+    }
+    public final Configurator withWechatAppSecret(String appSecret) {
+        LATTER_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET.name(),appSecret);
+        return this;
+    }
+    public final Configurator withActivity(Activity activity) {
+        LATTER_CONFIGS.put(ConfigKeys.ACTIVITY.name(),activity);
+        return this;
+    }
     public final Configurator withInterceptorS(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         LATTER_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(),INTERCEPTORS);

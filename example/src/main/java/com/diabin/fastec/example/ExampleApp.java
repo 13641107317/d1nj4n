@@ -19,6 +19,8 @@ public class ExampleApp extends Application {
                 .withApiHost("http://127.0.0.1/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
+                .withWechatAppId("")
+                .withWechatAppSecret("")
                 .withLoaderDelayed(3000)
                 .configure();
 

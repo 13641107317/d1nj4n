@@ -10,6 +10,8 @@ import android.view.View;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
 import com.flj.latte.delegates.LatteDelegate;
+import com.flj.latte.wechat.LatteWechat;
+import com.flj.latte.wechat.callbacks.IWechatSignInCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -49,10 +51,15 @@ public class SignInDelegate extends LatteDelegate {
     void onClickStartSignUp() {
         start(new SignUpDelegate());
     }
-
+//微信登录
     @OnClick(R2.id.icon_sign_in_wechat)
     void onClickWechat() {
+        LatteWechat.getIntance().onSignInSuccess(new IWechatSignInCallback() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
 
+            }
+        });
     }
 
     private boolean checkForm() {
