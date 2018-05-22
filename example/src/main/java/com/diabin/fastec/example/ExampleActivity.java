@@ -49,11 +49,9 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     public void onLauncherFinish(OnLauncherFinishTag tag) {
         switch (tag) {
             case SIGNED:
-                Toast.makeText(this, "启动结束,用户已经登录", Toast.LENGTH_LONG).show();
                 start(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
-                Toast.makeText(this, "启动结束,用户没有登录", Toast.LENGTH_LONG).show();
                 start(new SignInDelegate());
                 break;
             default:
