@@ -10,6 +10,7 @@ import com.flj.latte.activities.ProxyActivity;
 import com.flj.latte.app.Latter;
 import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.ec.launcher.LauncherDelegate;
+import com.flj.latte.ec.main.EcBottomDelegate;
 import com.flj.latte.ec.sign.ISignListener;
 import com.flj.latte.ec.sign.SignInDelegate;
 import com.flj.latte.ui.launcher.ILauncherListener;
@@ -49,7 +50,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this, "启动结束,用户已经登录", Toast.LENGTH_LONG).show();
-                start(new ExampleDelegate());
+                start(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束,用户没有登录", Toast.LENGTH_LONG).show();
