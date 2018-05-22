@@ -64,6 +64,10 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
     //微信依赖（包含统计）
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    //recycleview依赖
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:+'
+    //RecyclerView 分割线
+    compile 'com.choices.divider:RecyclerView_Divider:+'
     //沉浸式状态栏
     compile 'com.github.niorgai:StatusBarCompat:2.1.3'
     //Google AutoValue

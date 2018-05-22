@@ -21,14 +21,15 @@ public class ExampleApp extends Application {
                 .withIcon(new FontEcModule())
                 .withWechatAppId("")
                 .withWechatAppSecret("")
-                .withLoaderDelayed(3000)
+                .withLoaderDelayed(5000)
                 .configure();
 
         //数据库初始化
         DataBaseManager.getDataBaseManager().init(this);
 //        initStetho();
     }
-        private void initStetho() {
+
+    private void initStetho() {
 //            Stetho.initializeWithDefaults(this);
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)

@@ -63,7 +63,8 @@ public class RequestCallBacks implements Callback<String> {
         }
         stopLoading();
     }
-    private void stopLoading(){
+
+    private void stopLoading() {
         final long delayed = Latter.getConfiguration(ConfigKeys.LOADER_DELAYED.name());
         if (LOADER_STYLE != null) {
             HANDLER.postDelayed(new Runnable() {

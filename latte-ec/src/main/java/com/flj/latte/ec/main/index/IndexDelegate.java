@@ -36,6 +36,7 @@ public class IndexDelegate extends BottomItemDelegate {
     IconTextView icon_scan = null;
 
     private RefreshHandler mRefreshHandler = null;
+
     private void initRefreshLayout() {
         mSwipeRefreshLayout.setColorSchemeResources(
                 android.R.color.holo_blue_light,
@@ -44,11 +45,13 @@ public class IndexDelegate extends BottomItemDelegate {
         );
         mSwipeRefreshLayout.setProgressViewOffset(true, 100, 200);
     }
+
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-
         mRefreshHandler = new RefreshHandler(mSwipeRefreshLayout);
+        mRefreshHandler.firstPage("https://www.mi.com/",getContext());
     }
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_index;
