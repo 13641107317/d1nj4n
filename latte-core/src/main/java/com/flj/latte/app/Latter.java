@@ -1,6 +1,7 @@
 package com.flj.latte.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 import java.util.WeakHashMap;
 
@@ -27,6 +28,8 @@ public final class Latter {
     public static Context getApplication(){
         return getConfiguration(ConfigKeys.APPLICATION_CONTEXT.name());
     }
-
+    public static Handler getHandler() {
+        return getConfiguration(ConfigKeys.HANDLER.name());
+    }
 
 }

@@ -12,6 +12,7 @@ import android.view.View;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
 import com.flj.latte.bottom.BottomItemDelegate;
+import com.flj.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
@@ -34,13 +35,30 @@ public class IndexDelegate extends BottomItemDelegate {
     @BindView(R2.id.icon_index_scan)
     IconTextView icon_scan = null;
 
+    private RefreshHandler mRefreshHandler = null;
+    private void initRefreshLayout() {
+        mSwipeRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_green_light
+        );
+        mSwipeRefreshLayout.setProgressViewOffset(true, 100, 200);
+    }
+    @Override
+    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+
+        mRefreshHandler = new RefreshHandler(mSwipeRefreshLayout);
+    }
     @Override
     public Object setLayout() {
         return R.layout.delegate_index;
     }
 
     @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        initRefreshLayout();
     }
+
+
 }
