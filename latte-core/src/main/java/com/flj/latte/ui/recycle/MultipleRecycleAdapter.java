@@ -43,9 +43,9 @@ public class MultipleRecycleAdapter
     private void init() {
         //设置不同item的布局
         addItemType(ItemType.TEXT, R.layout.item_multiple_text);
-        addItemType(ItemType.TEXT, R.layout.item_multiple_image);
-        addItemType(ItemType.TEXT, R.layout.item_multiple_image_text);
-        addItemType(ItemType.TEXT, R.layout.item_multiple_banner);
+        addItemType(ItemType.IMAGE, R.layout.item_multiple_image);
+        addItemType(ItemType.TEXT_IMAGE, R.layout.item_multiple_image_text);
+        addItemType(ItemType.BANNER, R.layout.item_multiple_banner);
         //设置宽度监听
         setSpanSizeLookup(this);
         openLoadAnimation();

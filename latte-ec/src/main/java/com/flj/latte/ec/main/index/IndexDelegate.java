@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -46,10 +47,16 @@ public class IndexDelegate extends BottomItemDelegate {
         mSwipeRefreshLayout.setProgressViewOffset(true, 100, 200);
     }
 
+    //设置recycleview布局
+    private void initRecycleView() {
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
+    }
+
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-        mRefreshHandler = new RefreshHandler(mSwipeRefreshLayout);
-        mRefreshHandler.firstPage("https://www.mi.com/",getContext());
+        mRefreshHandler = RefreshHandler.create(mSwipeRefreshLayout, mRecyclerView, new IndexDataConverter());
+
     }
 
     @Override
@@ -61,6 +68,7 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
+        initRecycleView();
     }
 
 
