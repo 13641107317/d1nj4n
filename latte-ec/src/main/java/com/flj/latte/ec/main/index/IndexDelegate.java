@@ -14,6 +14,7 @@ import android.view.View;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
 import com.flj.latte.bottom.BottomItemDelegate;
+import com.flj.latte.ec.main.EcBottomDelegate;
 import com.flj.latte.ui.recycle.BseDecoration;
 import com.flj.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
@@ -54,6 +55,9 @@ public class IndexDelegate extends BottomItemDelegate {
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.addItemDecoration(BseDecoration.create(Color.GRAY,2));
+        //获取父布局
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     @Override
