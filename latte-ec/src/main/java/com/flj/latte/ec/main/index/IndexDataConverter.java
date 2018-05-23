@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 /**
  * Created by wp on 2018/5/22.
+ * 首页数据解析
  */
 
 public class IndexDataConverter extends DataConverter {
@@ -45,7 +46,6 @@ public class IndexDataConverter extends DataConverter {
                     bannerImages.add(banner);
                 }
             }
-
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ITEM_TYPE,type)
                     .setField(MultipleFields.SPAN_SIZE,spanSize)
