@@ -12,6 +12,7 @@ public abstract class DataConverter {
     private String mJsonData = null;
 
     public abstract ArrayList<MultipleItemEntity> converter();
+
     public final DataConverter setJsonData(String json){
         this.mJsonData = json;
         return this;
