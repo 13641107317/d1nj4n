@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_vertical_container"
+    android:layout_width="match_parent"
+    android:layout_height="48dp">
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_menu_list"
+        android:layout_width="match_parent"
+        android:layout_toRightOf="@id/view_line"
+        android:layout_centerInParent="true"
+        android:layout_height="40dp"
+        android:gravity="center" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/cardview_dark_background" />
+</RelativeLayout>
