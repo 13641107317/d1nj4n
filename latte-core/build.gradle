@@ -70,7 +70,7 @@ dependencies {
     compile 'com.choices.divider:RecyclerView_Divider:+'
     //沉浸式状态栏
     compile 'com.github.niorgai:StatusBarCompat:2.1.3'
-    //Google AutoValue
+    //Google AutoValue provided关键字打包完成代码废弃
     provided 'com.google.auto.value:auto-value:1.4.1'
     annotationProcessor "com.google.auto.value:auto-value:1.4.1"
     //工具包

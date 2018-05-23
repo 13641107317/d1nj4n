@@ -16,6 +16,8 @@ import com.flj.latte.ec.sign.SignInDelegate;
 import com.flj.latte.ui.launcher.ILauncherListener;
 import com.flj.latte.ui.launcher.OnLauncherFinishTag;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
 
     @Override
@@ -26,6 +28,8 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
             actionBar.hide();
         }
         Latter.getConfigurator().withActivity(this);
+        //状态栏
+        StatusBarCompat.translucentStatusBar(this,true);
     }
 
     @Override

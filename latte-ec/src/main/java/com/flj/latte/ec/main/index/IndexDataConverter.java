@@ -9,7 +9,6 @@ import com.flj.latte.ui.recycle.MultipleFields;
 import com.flj.latte.ui.recycle.MultipleItemEntity;
 
 import java.util.ArrayList;
-
 /**
  * Created by wp on 2018/5/22.
  * 首页数据解析
