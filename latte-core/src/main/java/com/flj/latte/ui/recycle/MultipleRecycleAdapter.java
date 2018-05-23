@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.diabin.latte.R;
@@ -23,9 +25,14 @@ import java.util.List;
 public class MultipleRecycleAdapter
         extends BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
         implements BaseQuickAdapter.SpanSizeLookup,OnItemClickListener{
-    //确保recycleview只加载一次banner
+    //确保初始化一次banner,防止item重复加载
     private boolean isInitBanner = false;
-
+    //设置图片加载策略
+    private static final RequestOptions REQUEST_OPTIONS =
+            new RequestOptions()
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontAnimate();
     protected MultipleRecycleAdapter(List<MultipleItemEntity> data) {
         super(data);
         init();
@@ -68,6 +75,7 @@ public class MultipleRecycleAdapter
                 Glide
                         .with(mContext)
                         .load(imageUrl)
+                        .apply(REQUEST_OPTIONS)
                         .into((ImageView) holder.getView(R.id.item_image_single));
                 break;
             case ItemType.TEXT_IMAGE:
@@ -77,6 +85,7 @@ public class MultipleRecycleAdapter
                 Glide
                         .with(mContext)
                         .load(imageUrl)
+                        .apply(REQUEST_OPTIONS)
                         .into((ImageView) holder.getView(R.id.item_iv_image_text));
                 break;
             case ItemType.BANNER:

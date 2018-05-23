@@ -1,5 +1,6 @@
 package com.flj.latte.ec.main.index;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.view.View;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
 import com.flj.latte.bottom.BottomItemDelegate;
+import com.flj.latte.ui.recycle.BseDecoration;
 import com.flj.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
@@ -51,12 +53,13 @@ public class IndexDelegate extends BottomItemDelegate {
     private void initRecycleView() {
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(gridLayoutManager);
+        mRecyclerView.addItemDecoration(BseDecoration.create(Color.GRAY,2));
     }
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         mRefreshHandler = RefreshHandler.create(mSwipeRefreshLayout, mRecyclerView, new IndexDataConverter());
-
+//        mRefreshHandler.firstPage("",getContext());
     }
 
     @Override
