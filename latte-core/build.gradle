@@ -10,19 +10,11 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
-        signingConfig signingConfigs.debug
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
-            minifyEnabled false
-            //移除无用的资源文件
-            shrinkResources true
-            zipAlignEnabled true
-            debuggable false
-            jniDebuggable false
+            multiDexEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -34,6 +26,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
+
     //Android Support包
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
@@ -89,4 +82,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
     compile 'com.github.bumptech.glide:okhttp3-integration:4.0.0-RC0@aar'
    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
+    //圆形图片
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }
