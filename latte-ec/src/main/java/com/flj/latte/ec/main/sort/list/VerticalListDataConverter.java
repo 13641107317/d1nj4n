@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 /**
  * Created by mac on 2018/5/23.
+ * 分类界面数据转换 list
  */
 
 public final class VerticalListDataConverter extends DataConverter {
@@ -17,7 +18,7 @@ public final class VerticalListDataConverter extends DataConverter {
         final ArrayList<MultipleItemEntity> arrayList = new ArrayList<>();
         final ArrayList<BeanSort> beanSorts = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            beanSorts.add(new BeanSort("1", "栏目" + i));
+            beanSorts.add(new BeanSort(i, "栏目" + i));
         }
         for (BeanSort bean : beanSorts) {
             final MultipleItemEntity entity = MultipleItemEntity.builder()
