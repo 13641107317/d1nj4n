@@ -20,6 +20,7 @@ public abstract class WebDelegate extends LatteDelegate {
     private WebView mWebView = null;
     private final ReferenceQueue<WebView> WEB_VIEW_QUEUE = new ReferenceQueue<>();
     private String mUrl = null;
+    //webView 是否准备好
     private boolean mIsWebViewAvailable = false;
 
     public WebDelegate() {
@@ -31,7 +32,6 @@ public abstract class WebDelegate extends LatteDelegate {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         final Bundle args = getArguments();
         mUrl = args.getString(RouteKeys.URL.name());
     }
@@ -39,7 +39,7 @@ public abstract class WebDelegate extends LatteDelegate {
     @Override
     public void onPause() {
         super.onPause();
-        if (mWebView!=null){
+        if (mWebView != null) {
             mWebView.onPause();
         }
     }
@@ -47,9 +47,23 @@ public abstract class WebDelegate extends LatteDelegate {
     @Override
     public void onResume() {
         super.onResume();
-        if (mWebView!=null){
+        if (mWebView != null) {
             mWebView.onResume();
         }
+    }
+
+    public WebView getWebView() {
+        if (mWebView == null) {
+            new NullPointerException("webVeiw IS NULL!");
+        }
+        return mIsWebViewAvailable ? mWebView : null;
+    }
+
+    public String getUrl() {
+        if (mUrl == null) {
+            new NullPointerException("url IS NULL!");
+        }
+        return mUrl;
     }
 
     @SuppressLint("JavascriptInterface")
@@ -67,9 +81,9 @@ public abstract class WebDelegate extends LatteDelegate {
                 mWebView = initializer.initWebView(mWebView);
                 mWebView.setWebViewClient(initializer.initWebViewClient());
                 mWebView.setWebChromeClient(initializer.initWebChromeClient());
-                mWebView.addJavascriptInterface(LatteWebInterface.create(this),"latte");
-                mIsWebViewAvailable =true;
-            }else{
+                mWebView.addJavascriptInterface(LatteWebInterface.create(this), "latte");
+                mIsWebViewAvailable = true;
+            } else {
                 throw new NullPointerException("initializer is NULL!");
             }
         }
@@ -81,10 +95,11 @@ public abstract class WebDelegate extends LatteDelegate {
         super.onDestroyView();
         mIsWebViewAvailable = false;
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mWebView!=null){
+        if (mWebView != null) {
             mWebView.removeAllViews();
             mWebView.destroy();
             mWebView = null;
