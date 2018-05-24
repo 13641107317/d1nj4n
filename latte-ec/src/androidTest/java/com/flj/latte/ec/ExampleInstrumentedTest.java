@@ -3,9 +3,15 @@ package com.flj.latte.ec;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
+
+import com.flj.latte.ec.main.sort.content.SectionBean;
+import com.flj.latte.ec.main.sort.content.SectionDataConverter;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -16,6 +22,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
@@ -23,4 +30,5 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.diabin.latte.ec.test", appContext.getPackageName());
     }
+
 }

@@ -1,4 +1,4 @@
-package com.flj.latte.ec.main.develop;
+package com.flj.latte.ec.main.discovery;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,10 +12,10 @@ import com.flj.latte.bottom.BottomItemDelegate;
  * Created by wp on 2018/5/22.
  */
 
-public class DevelopDelegate extends BottomItemDelegate {
+public class DiscoveryDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
-        return R.layout.delegate_develop;
+        return R.layout.delegate_discovery;
     }
 
     @Override

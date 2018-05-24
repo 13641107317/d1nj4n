@@ -5,19 +5,19 @@ package com.flj.latte.ec.main.sort.list;
  */
 
 public class BeanSort  {
-   private String id;
+   private int id;
    private String name;
 
-    public BeanSort(String id, String name) {
+    public BeanSort(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public BeanSort setId(String id) {
+    public BeanSort setId(int id) {
         this.id = id;
         return this;
     }

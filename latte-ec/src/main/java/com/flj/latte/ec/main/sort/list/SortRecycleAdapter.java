@@ -5,7 +5,9 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.diabin.latte.ec.R;
+import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.ec.main.sort.SortDelegate;
+import com.flj.latte.ec.main.sort.content.ContentDelegate;
 import com.flj.latte.ui.recycle.ItemType;
 import com.flj.latte.ui.recycle.MultipleFields;
 import com.flj.latte.ui.recycle.MultipleItemEntity;
@@ -21,19 +23,20 @@ import java.util.List;
 public class SortRecycleAdapter extends MultipleRecycleAdapter {
     private final SortDelegate DELEGATE;
 
-    private  int mPosition  = 0;
+    private int mPosition = 0;
+
     protected SortRecycleAdapter(List<MultipleItemEntity> data,
                                  SortDelegate delegate) {
         super(data);
         this.DELEGATE = delegate;
         //添加垂直菜单布局
-        addItemType(ItemType.VERTICAL_MENU_LIST, R.layout.item_vertical_menu_list );
+        addItemType(ItemType.VERTICAL_MENU_LIST, R.layout.item_vertical_menu_list);
     }
 
     @Override
     protected void convert(final MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
-        switch (holder.getItemViewType()){
+        switch (holder.getItemViewType()) {
             case ItemType.VERTICAL_MENU_LIST:
                 final String text = entity.getField(MultipleFields.TEXT);
                 final boolean isClick = entity.getField(MultipleFields.TAG);
@@ -43,36 +46,48 @@ public class SortRecycleAdapter extends MultipleRecycleAdapter {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-                        final  int currentPosition= holder.getAdapterPosition();
-                        if (mPosition!= currentPosition){
-
+                        //当前点击的下标
+                        final int currentPosition = holder.getAdapterPosition();
+                        if (mPosition != currentPosition) {
                             //还原上一次item
-                            getData().get(mPosition).setField(MultipleFields.TAG,false);
+                            getData().get(mPosition).setField(MultipleFields.TAG, false);
                             notifyItemChanged(mPosition);
                             //更新选中的item
-                            entity.setField(MultipleFields.TAG,true);
+                            entity.setField(MultipleFields.TAG, true);
                             notifyItemChanged(currentPosition);
                             mPosition = currentPosition;
+                            final int contentId = getData().get(currentPosition).getField(MultipleFields.ID);
+                            showContent(contentId);
                         }
                     }
                 });
-
-                if (!isClick){
+                if (!isClick) {
                     line.setVisibility(View.INVISIBLE);
-                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.we_chat_black));
-                    itemView.setBackgroundColor(ContextCompat.getColor(mContext,R.color.item_background));
-                }else{
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.we_chat_black));
+                    itemView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.item_background));
+                } else {
                     line.setVisibility(View.VISIBLE);
-                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.white));
-                    line.setBackgroundColor(ContextCompat.getColor(mContext,R.color.app_main));
-                    itemView.setBackgroundColor(ContextCompat.getColor(mContext,R.color.green));
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+                    line.setBackgroundColor(ContextCompat.getColor(mContext, R.color.app_main));
+                    itemView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green));
                 }
-
-                holder.setText(R.id.tv_menu_list,text);
+                holder.setText(R.id.tv_menu_list, text);
                 break;
-                default:
-                    break;
+            default:
+                break;
+        }
+    }
+
+    private void showContent(int contentId) {
+        final ContentDelegate delegate = ContentDelegate.newInstance(contentId);
+        switchContent(delegate);
+    }
+
+    private void switchContent(ContentDelegate delegate) {
+
+        final LatteDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+        if (contentDelegate != null) {
+            contentDelegate.replaceFragment(delegate, false);
         }
     }
 }

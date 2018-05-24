@@ -25,5 +25,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     compile project(':latte-ui')
-
+    testCompile 'junit:junit:4.12'
 }
