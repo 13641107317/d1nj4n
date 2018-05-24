@@ -60,7 +60,10 @@ public class ContentDelegate extends LatteDelegate {
             String josn = inputStreamToString(in);
             sectionBeans = new SectionDataConverter().converter(josn);
             final SectionAdapter adapter = new SectionAdapter(R.layout.item_section_content, R.layout.item_section_header, sectionBeans);
-            mRecyclerView.setAdapter(adapter);
+            if (adapter != null) {
+                mRecyclerView.setAdapter(adapter);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -91,11 +94,7 @@ public class ContentDelegate extends LatteDelegate {
         final StaggeredGridLayoutManager manager =
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(manager);
-    }
-
-    @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
         initData();
     }
+
 }
