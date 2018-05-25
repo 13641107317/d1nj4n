@@ -1,15 +1,14 @@
 package com.diabin.fastec.example.generators;
 
 import com.flj.latte.annotations.PayEntryGenerator;
-import com.flj.latte.wechat.templates.WXPayEntryTemplate;
+import com.flj.latte.wechat.templates.WPayEntryTemplate;
 
 /**
- * Created by wp
+ * Created by wp on 2018/5/21.
  */
-@SuppressWarnings("unused")
 @PayEntryGenerator(
         packageName = "com.diabin.fastec.example",
-        payEntryTemplate = WXPayEntryTemplate.class
+        payEntryTemplate = WPayEntryTemplate.class
 )
 public interface WeChatPayEntry {
 }

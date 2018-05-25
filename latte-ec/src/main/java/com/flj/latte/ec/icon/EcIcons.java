@@ -4,6 +4,7 @@ import com.joanzapata.iconify.Icon;
 
 /**
  * Created by wp
+ *
  */
 
 public enum EcIcons implements Icon {

@@ -1,5 +1,6 @@
 package com.flj.latte.net.interceptors;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 
 import okhttp3.FormBody;
@@ -7,12 +8,18 @@ import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 
+
 /**
- * Created by wp
+ * Created by wp on 2018/5/17.
  */
 
 public abstract class BaseInterceptor implements Interceptor {
-
+    /**
+     * 获取从第一个到最后一个有序排列的url参数
+     *
+     * @param chain
+     * @return
+     */
     protected LinkedHashMap<String, String> getUrlParameters(Chain chain) {
         final HttpUrl url = chain.request().url();
         int size = url.querySize();
@@ -29,12 +36,10 @@ public abstract class BaseInterceptor implements Interceptor {
     }
 
     protected LinkedHashMap<String, String> getBodyParameters(Chain chain) {
+
         final FormBody formBody = (FormBody) chain.request().body();
         final LinkedHashMap<String, String> params = new LinkedHashMap<>();
-        int size = 0;
-        if (formBody != null) {
-            size = formBody.size();
-        }
+        int size = formBody.size();
         for (int i = 0; i < size; i++) {
             params.put(formBody.name(i), formBody.value(i));
         }

@@ -3,21 +3,20 @@ package com.flj.latte.ec.main.index;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.flj.latte.ui.recycler.DataConverter;
-import com.flj.latte.ui.recycler.ItemType;
-import com.flj.latte.ui.recycler.MultipleFields;
-import com.flj.latte.ui.recycler.MultipleItemEntity;
+import com.flj.latte.ui.recycle.DataConverter;
+import com.flj.latte.ui.recycle.ItemType;
+import com.flj.latte.ui.recycle.MultipleFields;
+import com.flj.latte.ui.recycle.MultipleItemEntity;
 
 import java.util.ArrayList;
-
 /**
- * Created by wp
+ * Created by wp on 2018/5/22.
+ * 首页数据解析
  */
 
-public final class IndexDataConverter extends DataConverter {
-
+public class IndexDataConverter extends DataConverter {
     @Override
-    public ArrayList<MultipleItemEntity> convert() {
+    public ArrayList<MultipleItemEntity> converter() {
         final JSONArray dataArray = JSON.parseObject(getJsonData()).getJSONArray("data");
         final int size = dataArray.size();
         for (int i = 0; i < size; i++) {
@@ -55,10 +54,9 @@ public final class IndexDataConverter extends DataConverter {
                     .setField(MultipleFields.BANNERS,bannerImages)
                     .build();
 
-            ENTITIES.add(entity);
+            ENTITES.add(entity);
 
         }
-
-        return ENTITIES;
+        return ENTITES;
     }
 }

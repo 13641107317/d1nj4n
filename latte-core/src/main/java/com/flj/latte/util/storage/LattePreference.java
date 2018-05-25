@@ -2,13 +2,12 @@ package com.flj.latte.util.storage;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.flj.latte.app.Latte;
+import com.flj.latte.app.Latter;
 
 /**
- * Created by wp
+ * Created by 傅令杰 on 2017/4/22
  */
 
 public final class LattePreference {
@@ -20,7 +19,7 @@ public final class LattePreference {
      * Context.getSharedPreferences(String name,int mode)生成name.xml
      */
     private static final SharedPreferences PREFERENCES =
-            PreferenceManager.getDefaultSharedPreferences(Latte.getApplicationContext());
+            PreferenceManager.getDefaultSharedPreferences(Latter.getApplication());
     private static final String APP_PREFERENCES_KEY = "profile";
 
     private static SharedPreferences getAppPreference() {

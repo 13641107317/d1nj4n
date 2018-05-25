@@ -1,16 +1,12 @@
 package com.flj.latte.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.NonNull;
+import android.util.Log;
 
-import com.blankj.utilcode.util.Utils;
-import com.flj.latte.delegates.web.event.Event;
-import com.flj.latte.delegates.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,27 +14,27 @@ import java.util.HashMap;
 import okhttp3.Interceptor;
 
 /**
- * Created by wp
+ * Created by mac on 2018/5/15.
  */
 
-public final class Configurator {
-
-    private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
+public class Configurator {
+    private static final String TAG = "way";
+    private static final HashMap<Object, Object> LATTER_CONFIGS = new HashMap<>();
     private static final Handler HANDLER = new Handler();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
-        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
-        LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
+        LATTER_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
+        LATTER_CONFIGS.put(ConfigKeys.HANDLER.name(), HANDLER);
     }
 
-    static Configurator getInstance() {
+    public static Configurator getInstance() {
         return Holder.INSTANCE;
     }
 
-    final HashMap<Object, Object> getLatteConfigs() {
-        return LATTE_CONFIGS;
+    final HashMap<Object, Object> getLatterConfigs() {
+        return LATTER_CONFIGS;
     }
 
     private static class Holder {
@@ -47,18 +43,16 @@ public final class Configurator {
 
     public final void configure() {
         initIcons();
-        Logger.addLogAdapter(new AndroidLogAdapter());
-        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
-        Utils.init(Latte.getApplicationContext());
+        LATTER_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
     }
 
     public final Configurator withApiHost(String host) {
-        LATTE_CONFIGS.put(ConfigKeys.API_HOST, host);
+        LATTER_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
         return this;
-    }
 
+    }
     public final Configurator withLoaderDelayed(long delayed) {
-        LATTE_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
+        LATTER_CONFIGS.put(ConfigKeys.LOADER_DELAYED.name(), delayed);
         return this;
     }
 
@@ -75,59 +69,43 @@ public final class Configurator {
         ICONS.add(descriptor);
         return this;
     }
-
     public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
-        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        LATTER_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(),INTERCEPTORS);
         return this;
     }
-
-    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
-        INTERCEPTORS.addAll(interceptors);
-        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+    public final Configurator withWechatAppId(String appId) {
+        LATTER_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID.name(),appId);
         return this;
     }
-
-    public final Configurator withWeChatAppId(String appId) {
-        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, appId);
+    public final Configurator withWechatAppSecret(String appSecret) {
+        LATTER_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET.name(),appSecret);
         return this;
     }
-
-    public final Configurator withWeChatAppSecret(String appSecret) {
-        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, appSecret);
-        return this;
-    }
-
     public final Configurator withActivity(Activity activity) {
-        LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
+        LATTER_CONFIGS.put(ConfigKeys.ACTIVITY.name(),activity);
         return this;
     }
-
-    public Configurator withJavascriptInterface(@NonNull String name) {
-        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+    public final Configurator withInterceptorS(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        LATTER_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(),INTERCEPTORS);
         return this;
     }
-
-    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
-        final EventManager manager = EventManager.getInstance();
-        manager.addEvent(name, event);
-        return this;
-    }
-
-    private void checkConfiguration() {
-        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY);
+    private void checkConfigurator() {
+        final boolean isReady = (boolean) LATTER_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
         if (!isReady) {
-            throw new RuntimeException("Configuration is not ready,call configure");
+            throw new RuntimeException("configurator is not ready,call configurator");
         }
     }
 
 
     final <T> T getConfiguration(Object key) {
-        checkConfiguration();
-        final Object value = LATTE_CONFIGS.get(key);
+        checkConfigurator();
+        final Object value = LATTER_CONFIGS.get(key);
         if (value == null) {
             throw new NullPointerException(key.toString() + " IS NULL");
         }
-        return (T) LATTE_CONFIGS.get(key);
+        return (T) LATTER_CONFIGS.get(key);
     }
+
 }

@@ -5,38 +5,34 @@ import android.content.Context;
 import org.greenrobot.greendao.database.Database;
 
 /**
- * Created by wp
+ * Created by wp on 2018/5/18.
  */
 
-public class DatabaseManager {
-
+public class DataBaseManager {
     private DaoSession mDaoSession = null;
-    private UserProfileDao mDao = null;
+    private UserProFileDao mDao = null;
 
-    private DatabaseManager() {
+    private DataBaseManager(){
+
     }
-
-    public DatabaseManager init(Context context) {
+    public DataBaseManager init(Context context){
         initDao(context);
         return this;
     }
-
-    private static final class Holder {
-        private static final DatabaseManager INSTANCE = new DatabaseManager();
+    private static final class Holder{
+        private static final DataBaseManager INSTANCE = new DataBaseManager();
     }
-
-    public static DatabaseManager getInstance() {
+    public static DataBaseManager getDataBaseManager(){
         return Holder.INSTANCE;
     }
+    private void initDao(Context context){
 
-    private void initDao(Context context) {
-        final ReleaseOpenHelper helper = new ReleaseOpenHelper(context, "fast_ec.db");
-        final Database db = helper.getWritableDb();
+        final ReleaseOpenHelper openHelper = new ReleaseOpenHelper(context,"fast_ec.db" );
+        final Database db = openHelper.getWritableDb();
         mDaoSession = new DaoMaster(db).newSession();
-        mDao = mDaoSession.getUserProfileDao();
+        mDao = mDaoSession.getUserProFileDao();
     }
-
-    public final UserProfileDao getDao() {
+    public final UserProFileDao getDao(){
         return mDao;
     }
 }

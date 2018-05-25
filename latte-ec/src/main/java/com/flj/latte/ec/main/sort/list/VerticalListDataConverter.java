@@ -1,48 +1,37 @@
 package com.flj.latte.ec.main.sort.list;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.flj.latte.ui.recycler.DataConverter;
-import com.flj.latte.ui.recycler.ItemType;
-import com.flj.latte.ui.recycler.MultipleFields;
-import com.flj.latte.ui.recycler.MultipleItemEntity;
+import com.flj.latte.ui.recycle.DataConverter;
+import com.flj.latte.ui.recycle.ItemType;
+import com.flj.latte.ui.recycle.MultipleFields;
+import com.flj.latte.ui.recycle.MultipleItemEntity;
 
 import java.util.ArrayList;
 
 /**
- * Created by wp
+ * Created by mac on 2018/5/23.
+ * 分类界面数据转换 list
  */
 
 public final class VerticalListDataConverter extends DataConverter {
-
     @Override
-    public ArrayList<MultipleItemEntity> convert() {
-
-        final ArrayList<MultipleItemEntity> dataList = new ArrayList<>();
-        final JSONArray dataArray = JSON
-                .parseObject(getJsonData())
-                .getJSONObject("data")
-                .getJSONArray("list");
-
-        final int size = dataArray.size();
-        for (int i = 0; i < size; i++) {
-            final JSONObject data = dataArray.getJSONObject(i);
-            final int id = data.getInteger("id");
-            final String name = data.getString("name");
-
+    public ArrayList<MultipleItemEntity> converter() {
+        final ArrayList<MultipleItemEntity> arrayList = new ArrayList<>();
+        final ArrayList<BeanSort> beanSorts = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            beanSorts.add(new BeanSort(i, "栏目" + i));
+        }
+        for (BeanSort bean : beanSorts) {
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ITEM_TYPE, ItemType.VERTICAL_MENU_LIST)
-                    .setField(MultipleFields.ID, id)
-                    .setField(MultipleFields.TEXT, name)
+                    .setField(MultipleFields.ID, bean.getId())
+                    .setField(MultipleFields.TEXT, bean.getName())
                     .setField(MultipleFields.TAG, false)
                     .build();
-
-            dataList.add(entity);
+            arrayList.add(entity);
             //设置第一个被选中
-            dataList.get(0).setField(MultipleFields.TAG, true);
+            arrayList.get(0).setField(MultipleFields.TAG, true);
         }
 
-        return dataList;
+        return arrayList;
     }
 }

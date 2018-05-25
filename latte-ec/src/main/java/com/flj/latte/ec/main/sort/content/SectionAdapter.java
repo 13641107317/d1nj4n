@@ -12,7 +12,7 @@ import com.diabin.latte.ec.R;
 import java.util.List;
 
 /**
- * Created by wp
+ * Created by 傅令杰
  */
 
 public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseViewHolder> {
@@ -35,7 +35,7 @@ public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseVie
     @Override
     protected void convert(BaseViewHolder helper, SectionBean item) {
         //item.t返回SectionBean类型
-        final String thumb = item.t.getGoodsThumb();
+        final String thumb = item.t.getGoodsUrl();
         final String name = item.t.getGoodsName();
         final int goodsId = item.t.getGoodsId();
         final SectionContentItemEntity entity = item.t;
@@ -43,6 +43,7 @@ public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseVie
         final AppCompatImageView goodsImageView = helper.getView(R.id.iv);
         Glide.with(mContext)
                 .load(thumb)
+                .apply(OPTIONS)
                 .into(goodsImageView);
     }
 }

@@ -1,7 +1,7 @@
 package com.flj.latte.net;
 
 import com.flj.latte.app.ConfigKeys;
-import com.flj.latte.app.Latte;
+import com.flj.latte.app.Latter;
 
 import java.util.ArrayList;
 import java.util.WeakHashMap;
@@ -13,30 +13,41 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
- * Created by wp
+ * Created by wp on 2018/5/16.
  */
 
-public final class RestCreator {
-
+public class RestCreator {
     /**
      * 参数容器
      */
     private static final class ParamsHolder {
-        private static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
+        public static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     }
-
     public static WeakHashMap<String, Object> getParams() {
         return ParamsHolder.PARAMS;
     }
-
+    public static RestService getRestService() {
+        return RestServiceHolder.REST_SERVICE;
+    }
     /**
-     * 构建OkHttp
+     * 构建全局retrofit客户端
+     */
+    private static final class RetrofitHolder {
+        private static final String BASE_URL = Latter.getConfiguration(ConfigKeys.API_HOST.name());
+        private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(OKHttpHolder.OK_HTTP_CLIENT)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+    }
+    /**
+     * 构建okhttp
      */
     private static final class OKHttpHolder {
         private static final int TIME_OUT = 60;
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
-        private static final ArrayList<Interceptor> INTERCEPTORS = Latte.getConfiguration(ConfigKeys.INTERCEPTOR);
-
+        private static final ArrayList<Interceptor> INTERCEPTORS = Latter.getConfiguration(ConfigKeys.INTERCEPTOR.name());
+        //添加拦截器
         private static OkHttpClient.Builder addInterceptor() {
             if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
                 for (Interceptor interceptor : INTERCEPTORS) {
@@ -45,33 +56,16 @@ public final class RestCreator {
             }
             return BUILDER;
         }
-
         private static final OkHttpClient OK_HTTP_CLIENT = addInterceptor()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .build();
     }
 
     /**
-     * 构建全局Retrofit客户端
-     */
-    private static final class RetrofitHolder {
-        private static final String BASE_URL = Latte.getConfiguration(ConfigKeys.API_HOST);
-        private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(OKHttpHolder.OK_HTTP_CLIENT)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
-    }
-
-    /**
-     * Service接口
+     * service接口
      */
     private static final class RestServiceHolder {
         private static final RestService REST_SERVICE =
                 RetrofitHolder.RETROFIT_CLIENT.create(RestService.class);
-    }
-
-    public static RestService getRestService() {
-        return RestServiceHolder.REST_SERVICE;
     }
 }

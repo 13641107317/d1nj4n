@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by wp
+ * Created by mac on 2018/5/18.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)

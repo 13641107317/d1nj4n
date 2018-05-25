@@ -5,43 +5,42 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.flj.latte.delegates.LatteDelegate;
-import com.flj.latte.ec.detail.GoodsDetailDelegate;
-import com.flj.latte.ui.recycler.MultipleFields;
-import com.flj.latte.ui.recycler.MultipleItemEntity;
+import com.flj.latte.ec.main.detail.GoodsDetailDelegate;
+
+import java.lang.ref.PhantomReference;
 
 /**
- * Created by wp
+ * Created by wp on 2018/5/23.
  */
 
 public class IndexItemClickListener extends SimpleClickListener {
+    private final LatteDelegate mLatteDelegate;
 
-    private final LatteDelegate DELEGATE;
-
-    private IndexItemClickListener(LatteDelegate delegate) {
-        this.DELEGATE = delegate;
+    private IndexItemClickListener(LatteDelegate latteDelegate) {
+        this.mLatteDelegate = latteDelegate;
     }
-
-    public static SimpleClickListener create(LatteDelegate delegate) {
+    public static SimpleClickListener create(LatteDelegate delegate){
         return new IndexItemClickListener(delegate);
     }
-
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        final MultipleItemEntity entity = (MultipleItemEntity) baseQuickAdapter.getData().get(position);
-        final int goodsId = entity.getField(MultipleFields.ID);
-        final GoodsDetailDelegate delegate = GoodsDetailDelegate.create(goodsId);
-        DELEGATE.getSupportDelegate().start(delegate);
+
+        mLatteDelegate.start(new GoodsDetailDelegate());
+
     }
 
     @Override
     public void onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+
     }
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+
     }
 
     @Override
     public void onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
+
     }
 }

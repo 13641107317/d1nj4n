@@ -4,26 +4,25 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Toast;
 
 import com.flj.latte.delegates.LatteDelegate;
+import com.flj.latte.net.RestClient;
+import com.flj.latte.net.callback.IError;
+import com.flj.latte.net.callback.IFailure;
+import com.flj.latte.net.callback.ISuccess;
 
-import butterknife.OnClick;
 
 /**
- * Created by wp
+ * Created by wp on 2018/5/16.
  */
 
 public class ExampleDelegate extends LatteDelegate {
+    private static final String TAG = "way";
 
     @Override
     public Object setLayout() {
-        return com.diabin.fastec.example.R.layout.delegate_example;
-    }
-
-    @OnClick(com.diabin.fastec.example.R.id.btn_test)
-    void onClickTest() {
-        testWX();
-
+        return R.layout.delegate_example;
     }
 
     @Override
@@ -31,6 +30,27 @@ public class ExampleDelegate extends LatteDelegate {
 //        testRestClient();
     }
 
-    private void testWX() {
+    private void testRestClient() {
+        RestClient.builder()
+                .url("http://127.0.0.1/index")
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                       Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                    }
+                })
+                .builder()
+                .get();
     }
 }

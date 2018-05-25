@@ -3,23 +3,31 @@ package com.flj.latte.util.dimen;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
-import com.flj.latte.app.Latte;
+import com.flj.latte.app.Latter;
 
 /**
- * Created by wp
+ * Created by wp on 2018/5/17.
+ * 测量工具类 dialog
  */
 
-public final class DimenUtil {
-
+public class DimenUtil {
+    /**
+     * 屏幕宽度
+     * @return
+     */
     public static int getScreenWidth() {
-        final Resources resources = Latte.getApplicationContext().getResources();
-        final DisplayMetrics dm = resources.getDisplayMetrics();
-        return dm.widthPixels;
+        final Resources resources = Latter.getApplication().getResources();
+        final DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        return displayMetrics.widthPixels;
     }
 
+    /**
+     * 屏幕高度
+     * @return
+     */
     public static int getScreenHeight() {
-        final Resources resources = Latte.getApplicationContext().getResources();
-        final DisplayMetrics dm = resources.getDisplayMetrics();
-        return dm.heightPixels;
+        final Resources resources = Latter.getApplication().getResources();
+        final DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        return displayMetrics.heightPixels;
     }
 }

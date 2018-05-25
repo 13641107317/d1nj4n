@@ -5,18 +5,18 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * Created by wp
+ * Created by wp on 2018/5/18.
  */
 @Entity(nameInDb = "user_profile")
-public class UserProfile {
+public class UserProFile {
     @Id
     private long userId = 0;
     private String name = null;
     private String avatar = null;
     private String gender = null;
     private String address = null;
-    @Generated(hash = 1202698052)
-    public UserProfile(long userId, String name, String avatar, String gender,
+    @Generated(hash = 1090868953)
+    public UserProFile(long userId, String name, String avatar, String gender,
             String address) {
         this.userId = userId;
         this.name = name;
@@ -24,8 +24,8 @@ public class UserProfile {
         this.gender = gender;
         this.address = address;
     }
-    @Generated(hash = 968487393)
-    public UserProfile() {
+    @Generated(hash = 1311964716)
+    public UserProFile() {
     }
     public long getUserId() {
         return this.userId;
@@ -56,5 +56,16 @@ public class UserProfile {
     }
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "UserProFile{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
