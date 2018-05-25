@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.webkit.WebView;
-import android.webkit.WebViewFragment;
 
 import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.delegates.web.route.RouteKeys;
@@ -23,18 +22,14 @@ public abstract class WebDelegate extends LatteDelegate {
     //webView 是否准备好
     private boolean mIsWebViewAvailable = false;
 
+    private LatteDelegate mTopDelegate = null;
+
     public WebDelegate() {
 
     }
 
     public abstract IWebViewInitializer setIWebViewInitializer();
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        final Bundle args = getArguments();
-        mUrl = args.getString(RouteKeys.URL.name());
-    }
 
     @Override
     public void onPause() {
@@ -66,6 +61,14 @@ public abstract class WebDelegate extends LatteDelegate {
         return mUrl;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        final Bundle args = getArguments();
+        mUrl = args.getString(RouteKeys.URL.name());
+        initWebView();
+    }
+
     @SuppressLint("JavascriptInterface")
     private void initWebView() {
         if (mWebView != null) {
@@ -88,6 +91,18 @@ public abstract class WebDelegate extends LatteDelegate {
             }
         }
 
+    }
+
+    public void setTopDelegate(LatteDelegate delegate) {
+        mTopDelegate = delegate;
+
+    }
+
+    public LatteDelegate getTopDelegate() {
+        if (mTopDelegate == null) {
+            mTopDelegate = this;
+        }
+        return mTopDelegate;
     }
 
     @Override
