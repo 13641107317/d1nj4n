@@ -30,7 +30,7 @@ public class DiscoveryDelegate extends BottomItemDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        final WebDelegateImpl webDelegate = WebDelegateImpl.create("https://www.baidu.com/");
+        final WebDelegateImpl webDelegate = WebDelegateImpl.create("index.html");
         webDelegate.setTopDelegate(this.getParentDelegate());
         loadRootFragment(R.id.web_discovery_container, webDelegate);
     }

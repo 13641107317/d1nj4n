@@ -40,13 +40,11 @@ public class Router {
     }
 
     private void loadWebPage(WebView webView, String url) {
-
         if (webView != null) {
             webView.loadUrl(url);
         } else {
             throw new NullPointerException("WebView is null;");
         }
-
     }
 
     private void loadLocalPage(WebView webView, String url) {
@@ -54,7 +52,6 @@ public class Router {
     }
 
     private void loadPage(WebView webView, String url) {
-
         if (URLUtil.isNetworkUrl(url) || URLUtil.isAssetUrl(url)) {
             loadWebPage(webView, url);
         } else {
