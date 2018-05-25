@@ -3,18 +3,17 @@ package com.flj.latte.ec.main.sort.content;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.flj.latte.ui.recycle.DataConverter;
-import com.flj.latte.ui.recycle.MultipleItemEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wp on 2018/5/24.
+ * Created by wp
  */
 
 public class SectionDataConverter {
-    final List<SectionBean> converter(String json) {
+
+    final List<SectionBean> convert(String json) {
         final List<SectionBean> dataList = new ArrayList<>();
         final JSONArray dataArray = JSON.parseObject(json).getJSONArray("data");
 
@@ -26,7 +25,7 @@ public class SectionDataConverter {
             //添加title
             final SectionBean sectionTitleBean = new SectionBean(true, title);
             sectionTitleBean.setId(id);
-            sectionTitleBean.setMore(true);
+            sectionTitleBean.setIsMore(true);
             dataList.add(sectionTitleBean);
 
             final JSONArray goods = data.getJSONArray("goods");
@@ -36,12 +35,12 @@ public class SectionDataConverter {
                 final JSONObject contentItem = goods.getJSONObject(j);
                 final int goodsId = contentItem.getInteger("goods_id");
                 final String goodsName = contentItem.getString("goods_name");
-                final String goodsThumb = contentItem.getString("goods_url");
+                final String goodsThumb = contentItem.getString("goods_thumb");
                 //获取内容
                 final SectionContentItemEntity itemEntity = new SectionContentItemEntity();
                 itemEntity.setGoodsId(goodsId);
                 itemEntity.setGoodsName(goodsName);
-                itemEntity.setGoodsUrl(goodsThumb);
+                itemEntity.setGoodsThumb(goodsThumb);
                 //添加内容
                 dataList.add(new SectionBean(itemEntity));
             }

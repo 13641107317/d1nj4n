@@ -1,9 +1,10 @@
 package com.flj.latte.net.callback;
 
 /**
- * Created by wp on 2018/5/16.
+ * Created by wp
  */
 
 public interface ISuccess {
+
     void onSuccess(String response);
 }

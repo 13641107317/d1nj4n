@@ -1,7 +1,7 @@
 package com.flj.latte.util.timer;
 
 /**
- * Created by mac on 2018/5/17.
+ * Created by wp
  */
 
 public interface ITimerListener {

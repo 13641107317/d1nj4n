@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/app_main">
+        android:background="@android:color/holo_orange_dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        android:gravity="center">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:paddingLeft="@dimen/dp_10"
             android:paddingTop="6dp"
             android:text="分类"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
+
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.LinearLayoutCompat
@@ -28,18 +32,25 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.ContentFrameLayout
-            android:id="@+id/sort_list_container"
+            android:id="@+id/vertical_list_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/cardview_dark_background"/>
+            android:layout_weight="1" />
 
         <android.support.v7.widget.ContentFrameLayout
             android:id="@+id/sort_content_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
-            android:layout_weight="2.5"
-            android:background="@color/white"/>
+            android:layout_marginRight="8dp"
+            android:layout_weight="2.5" />
+
     </android.support.v7.widget.LinearLayoutCompat>
+    <View
+        android:id="@+id/nav"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_weight="0"
+        android:background="?attr/colorPrimary"
+        />
 </android.support.v7.widget.LinearLayoutCompat>

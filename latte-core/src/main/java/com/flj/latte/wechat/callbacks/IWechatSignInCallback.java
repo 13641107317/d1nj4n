@@ -1,9 +1,9 @@
 package com.flj.latte.wechat.callbacks;
 
 /**
- * Created by wp on 2018/5/21.
+ * Created by wp 5
  */
 
-public interface IWechatSignInCallback {
+public interface IWeChatSignInCallback {
     void onSignInSuccess(String userInfo);
 }

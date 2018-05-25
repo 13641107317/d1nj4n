@@ -1,10 +1,10 @@
 package com.flj.latte.net;
 
 /**
- * Created by wp on 2018/5/16.
+ * Created by wp
  */
 
-public enum HttpMethod {
+enum HttpMethod {
     GET,
     POST,
     POST_RAW,

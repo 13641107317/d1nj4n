@@ -12,10 +12,10 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleAnnotationValueVisitor7;
 
 /**
- * Created by mac on 2018/5/19.
+ * Created by wp
  */
+final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
 
-public final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void,Void> {
     private final Filer FILER;
     private String mPackageName = null;
 
