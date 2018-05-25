@@ -12,7 +12,7 @@ public class WebViewInitializer {
         WebView.setWebContentsDebuggingEnabled(true);
         //不能横向滚动
         webView.setHorizontalScrollBarEnabled(false);
-        
+
         //不能纵向滚动
 //        webView.setVerticalScrollBarEnabled(false);
         //允许截图
