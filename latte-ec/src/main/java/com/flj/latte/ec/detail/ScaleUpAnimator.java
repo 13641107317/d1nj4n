@@ -6,7 +6,7 @@ import com.daimajia.androidanimations.library.BaseViewAnimator;
 import com.nineoldandroids.animation.ObjectAnimator;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class ScaleUpAnimator extends BaseViewAnimator {

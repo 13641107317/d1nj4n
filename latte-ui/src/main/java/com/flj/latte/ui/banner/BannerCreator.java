@@ -8,7 +8,7 @@ import com.flj.latte.ui.R;
 import java.util.ArrayList;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class BannerCreator {

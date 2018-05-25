@@ -7,7 +7,7 @@ import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.delegates.web.WebDelegate;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public abstract class Event implements IEvent {

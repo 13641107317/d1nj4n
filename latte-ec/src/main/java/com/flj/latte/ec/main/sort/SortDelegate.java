@@ -11,7 +11,7 @@ import com.flj.latte.ec.main.sort.content.ContentDelegate;
 import com.flj.latte.ec.main.sort.list.VerticalListDelegate;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class SortDelegate extends BottomItemDelegate {

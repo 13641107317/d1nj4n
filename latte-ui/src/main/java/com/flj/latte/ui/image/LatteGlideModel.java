@@ -4,7 +4,7 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 @GlideModule
 public class LatteGlideModel extends AppGlideModule {

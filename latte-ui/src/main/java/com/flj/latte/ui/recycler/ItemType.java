@@ -1,7 +1,7 @@
 package com.flj.latte.ui.recycler;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class ItemType {

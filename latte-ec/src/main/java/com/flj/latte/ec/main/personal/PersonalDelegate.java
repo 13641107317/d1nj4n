@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class PersonalDelegate extends BottomItemDelegate {

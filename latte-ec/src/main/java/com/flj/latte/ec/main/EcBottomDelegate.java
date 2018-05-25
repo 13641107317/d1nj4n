@@ -15,7 +15,7 @@ import com.flj.latte.ec.main.sort.SortDelegate;
 import java.util.LinkedHashMap;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class EcBottomDelegate extends BaseBottomDelegate {

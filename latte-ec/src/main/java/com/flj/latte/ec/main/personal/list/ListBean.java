@@ -6,7 +6,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.flj.latte.delegates.LatteDelegate;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class ListBean implements MultiItemEntity {

@@ -17,7 +17,7 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import cn.jpush.android.api.JPushInterface;
 
 /**
- * Created by 傅令杰 on 2017/3/29
+ * Created by wp
  */
 public class ExampleApp extends MultiDexApplication {
 

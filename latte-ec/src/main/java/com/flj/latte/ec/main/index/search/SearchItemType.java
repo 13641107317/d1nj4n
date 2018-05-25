@@ -1,7 +1,7 @@
 package com.flj.latte.ec.main.index.search;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class SearchItemType {

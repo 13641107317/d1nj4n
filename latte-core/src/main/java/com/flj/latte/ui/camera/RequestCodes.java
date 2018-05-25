@@ -3,7 +3,7 @@ package com.flj.latte.ui.camera;
 import com.yalantis.ucrop.UCrop;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  * 请求码存储
  */
 

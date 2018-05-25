@@ -9,7 +9,7 @@ import com.flj.latte.util.storage.LattePreference;
 import java.util.ArrayList;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class SearchDataConverter extends DataConverter {

@@ -20,7 +20,7 @@ import java.util.List;
 import me.yokeyword.fragmentation.SupportHelper;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class SortRecyclerAdapter extends MultipleRecyclerAdapter {

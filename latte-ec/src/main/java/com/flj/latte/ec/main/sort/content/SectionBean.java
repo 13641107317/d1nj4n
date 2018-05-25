@@ -3,7 +3,7 @@ package com.flj.latte.ec.main.sort.content;
 import com.chad.library.adapter.base.entity.SectionEntity;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class SectionBean extends SectionEntity<SectionContentItemEntity> {

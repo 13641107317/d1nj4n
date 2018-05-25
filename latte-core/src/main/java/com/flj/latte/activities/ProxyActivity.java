@@ -14,7 +14,7 @@ import me.yokeyword.fragmentation.SupportActivityDelegate;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
- * Created by 傅令杰 on 2017/4/2
+ * Created by wp
  */
 
 public abstract class ProxyActivity extends AppCompatActivity implements ISupportActivity {

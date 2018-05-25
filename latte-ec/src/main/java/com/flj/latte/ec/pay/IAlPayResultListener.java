@@ -1,7 +1,7 @@
 package com.flj.latte.ec.pay;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public interface IAlPayResultListener {

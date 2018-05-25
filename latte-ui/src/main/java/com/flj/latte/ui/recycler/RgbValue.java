@@ -4,7 +4,7 @@ package com.flj.latte.ui.recycler;
 import com.google.auto.value.AutoValue;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 @AutoValue
 public abstract class RgbValue {

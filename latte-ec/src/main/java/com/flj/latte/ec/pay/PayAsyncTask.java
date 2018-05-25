@@ -8,7 +8,7 @@ import com.flj.latte.ui.loader.LatteLoader;
 import com.flj.latte.util.log.LatteLogger;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class PayAsyncTask extends AsyncTask<String, Void, String> {

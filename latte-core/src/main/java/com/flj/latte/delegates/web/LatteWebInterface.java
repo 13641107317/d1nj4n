@@ -8,7 +8,7 @@ import com.flj.latte.delegates.web.event.EventManager;
 import com.flj.latte.util.log.LatteLogger;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 final class LatteWebInterface {

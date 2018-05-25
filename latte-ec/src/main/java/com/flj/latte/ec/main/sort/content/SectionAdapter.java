@@ -12,7 +12,7 @@ import com.diabin.latte.ec.R;
 import java.util.List;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseViewHolder> {

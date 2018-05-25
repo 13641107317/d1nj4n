@@ -5,7 +5,7 @@ import android.support.annotation.ColorInt;
 import com.choices.divider.DividerItemDecoration;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class BaseDecoration extends DividerItemDecoration {

@@ -14,7 +14,7 @@ import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class ScannerDelegate extends LatteDelegate implements ZBarScannerView.ResultHandler {

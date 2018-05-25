@@ -10,7 +10,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class CircleTextView extends AppCompatTextView {

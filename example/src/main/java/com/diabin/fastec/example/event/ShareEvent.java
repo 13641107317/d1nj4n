@@ -10,7 +10,7 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class ShareEvent extends Event {

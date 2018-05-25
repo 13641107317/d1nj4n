@@ -3,7 +3,7 @@ package com.flj.latte.util.callback;
 import android.support.annotation.Nullable;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public interface IGlobalCallback<T> {

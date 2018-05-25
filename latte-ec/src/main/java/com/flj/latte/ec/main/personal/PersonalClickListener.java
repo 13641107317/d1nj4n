@@ -8,7 +8,7 @@ import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.ec.main.personal.list.ListBean;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class PersonalClickListener extends SimpleClickListener {

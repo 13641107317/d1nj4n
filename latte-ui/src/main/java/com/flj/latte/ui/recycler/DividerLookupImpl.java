@@ -4,7 +4,7 @@ import com.choices.divider.Divider;
 import com.choices.divider.DividerItemDecoration;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class DividerLookupImpl implements DividerItemDecoration.DividerLookup {

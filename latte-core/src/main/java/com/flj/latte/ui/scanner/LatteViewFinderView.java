@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import me.dm7.barcodescanner.core.ViewFinderView;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class LatteViewFinderView extends ViewFinderView {

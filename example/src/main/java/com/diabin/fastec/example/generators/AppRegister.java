@@ -4,7 +4,7 @@ import com.flj.latte.annotations.AppRegisterGenerator;
 import com.flj.latte.wechat.templates.AppRegisterTemplate;
 
 /**
- * Created by 傅令杰 on 2017/4/22
+ * Created by wp
  */
 @SuppressWarnings("unused")
 @AppRegisterGenerator(

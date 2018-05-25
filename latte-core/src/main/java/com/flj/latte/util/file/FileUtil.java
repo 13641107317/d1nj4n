@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 public final class FileUtil {
 

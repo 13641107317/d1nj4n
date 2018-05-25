@@ -1,7 +1,7 @@
 package com.flj.latte.delegates.web.event;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public interface IEvent {

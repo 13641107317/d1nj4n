@@ -11,7 +11,7 @@ import com.diabin.latte.ec.R;
 import com.flj.latte.ui.recycler.RgbValue;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 @SuppressWarnings("unused")

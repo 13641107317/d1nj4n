@@ -20,7 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class VerticalListDelegate extends LatteDelegate {

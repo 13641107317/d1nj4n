@@ -10,7 +10,7 @@ import com.flj.latte.ui.recycler.MultipleFields;
 import com.flj.latte.ui.recycler.MultipleItemEntity;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class IndexItemClickListener extends SimpleClickListener {

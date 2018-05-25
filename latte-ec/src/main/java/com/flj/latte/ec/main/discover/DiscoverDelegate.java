@@ -13,7 +13,7 @@ import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class DiscoverDelegate extends BottomItemDelegate {

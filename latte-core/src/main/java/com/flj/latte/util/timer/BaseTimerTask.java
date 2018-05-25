@@ -3,7 +3,7 @@ package com.flj.latte.util.timer;
 import java.util.TimerTask;
 
 /**
- * Created by 傅令杰 on 2017/4/22
+ * Created by wp
  */
 
 public class BaseTimerTask extends TimerTask {

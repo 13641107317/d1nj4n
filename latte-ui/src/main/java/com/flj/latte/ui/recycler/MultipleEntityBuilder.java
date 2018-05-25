@@ -3,7 +3,7 @@ package com.flj.latte.ui.recycler;
 import java.util.LinkedHashMap;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class MultipleEntityBuilder {

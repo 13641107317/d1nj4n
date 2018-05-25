@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class MultipleRecyclerAdapter extends

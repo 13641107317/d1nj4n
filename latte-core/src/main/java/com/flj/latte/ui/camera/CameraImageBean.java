@@ -3,7 +3,7 @@ package com.flj.latte.ui.camera;
 import android.net.Uri;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  * 存储一些中间值
  */
 

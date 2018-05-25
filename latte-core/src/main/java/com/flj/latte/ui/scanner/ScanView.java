@@ -7,7 +7,7 @@ import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class ScanView extends ZBarScannerView {

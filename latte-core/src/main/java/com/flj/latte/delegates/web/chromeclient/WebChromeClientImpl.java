@@ -5,7 +5,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class WebChromeClientImpl extends WebChromeClient {

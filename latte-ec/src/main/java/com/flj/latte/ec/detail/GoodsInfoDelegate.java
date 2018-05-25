@@ -15,7 +15,7 @@ import com.flj.latte.delegates.LatteDelegate;
 import butterknife.BindView;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class GoodsInfoDelegate extends LatteDelegate {

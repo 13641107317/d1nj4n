@@ -7,7 +7,7 @@ import com.flj.latte.app.Latte;
 import com.flj.latte.delegates.LatteDelegate;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public abstract class BottomItemDelegate extends LatteDelegate {

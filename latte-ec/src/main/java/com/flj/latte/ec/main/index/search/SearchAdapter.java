@@ -11,7 +11,7 @@ import com.flj.latte.ui.recycler.MultipleViewHolder;
 import java.util.List;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class SearchAdapter extends MultipleRecyclerAdapter {

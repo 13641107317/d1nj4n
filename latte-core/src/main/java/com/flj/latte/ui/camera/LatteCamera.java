@@ -6,7 +6,7 @@ import com.flj.latte.delegates.PermissionCheckerDelegate;
 import com.flj.latte.util.file.FileUtil;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  * 照相机调用类
  */
 

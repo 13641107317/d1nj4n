@@ -15,7 +15,7 @@ import java.util.Set;
 import cn.jpush.android.api.JPushInterface;
 
 /**
- * Created by 傅令杰
+ * Created by wp
  */
 
 public class PushReceiver extends BroadcastReceiver {
