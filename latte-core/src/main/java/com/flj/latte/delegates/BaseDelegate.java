@@ -46,6 +46,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DELEGATE.onCreate(savedInstanceState);
+
     }
 
     @Override
