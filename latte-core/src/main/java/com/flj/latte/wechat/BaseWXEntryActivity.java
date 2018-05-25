@@ -1,23 +1,21 @@
 package com.flj.latte.wechat;
 
-import android.util.Log;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.flj.latte.net.RestClient;
 import com.flj.latte.net.callback.IError;
 import com.flj.latte.net.callback.IFailure;
 import com.flj.latte.net.callback.ISuccess;
+import com.flj.latte.util.log.LatteLogger;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 /**
- * Created by wp on 2018/5/21.
+ * Created by 傅令杰 on 2017/4/25
  */
 
 public abstract class BaseWXEntryActivity extends BaseWXActivity {
-    private static final String TAG = "way";
 
     //用户登录成功后回调
     protected abstract void onSignInSuccess(String userInfo);
@@ -25,7 +23,6 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity {
     //微信发送请求到第三方应用后的回调
     @Override
     public void onReq(BaseReq baseReq) {
-
     }
 
     //第三方应用发送请求到微信后的回调
@@ -36,13 +33,14 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity {
         final StringBuilder authUrl = new StringBuilder();
         authUrl
                 .append("https://api.weixin.qq.com/sns/oauth2/access_token?appid=")
-                .append(LatteWechat.APP_ID)
+                .append(LatteWeChat.APP_ID)
                 .append("&secret=")
-                .append(LatteWechat.APP_SECRET)
+                .append(LatteWeChat.APP_SECRET)
                 .append("&code=")
                 .append(code)
                 .append("&grant_type=authorization_code");
-        Log.i(TAG, "onResp: authUrl" + authUrl.toString());
+
+        LatteLogger.d("authUrl", authUrl.toString());
         getAuth(authUrl.toString());
     }
 
@@ -57,6 +55,7 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity {
                         final JSONObject authObj = JSON.parseObject(response);
                         final String accessToken = authObj.getString("access_token");
                         final String openId = authObj.getString("openid");
+
                         final StringBuilder userInfoUrl = new StringBuilder();
                         userInfoUrl
                                 .append("https://api.weixin.qq.com/sns/userinfo?access_token=")
@@ -66,13 +65,15 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity {
                                 .append("&lang=")
                                 .append("zh_CN");
 
-                        Log.i(TAG, "onSuccess:userInfoUrl "+userInfoUrl.toString());
+                        LatteLogger.d("userInfoUrl", userInfoUrl.toString());
                         getUserInfo(userInfoUrl.toString());
+
                     }
                 })
-                .builder()
+                .build()
                 .get();
     }
+
     private void getUserInfo(String userInfoUrl) {
         RestClient
                 .builder()
@@ -95,7 +96,7 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity {
 
                     }
                 })
-                .builder()
+                .build()
                 .get();
     }
 }

@@ -7,25 +7,26 @@ import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.delegates.web.WebDelegate;
 
 /**
- * Created by wangpeng on 2018/5/25.
+ * Created by 傅令杰
  */
 
 public abstract class Event implements IEvent {
-   private Context mContext = null;
-   private String mAction = null;
-   private WebDelegate mDelegate = null;
-   private  String mUrl = null;
-   private WebView mWebView = null;
+    private Context mContent = null;
+    private String mAction = null;
+    private WebDelegate mDelegate = null;
+    private String mUrl = null;
+    private WebView mWebView = null;
 
-    public WebView getWebView() {
+    public Context getContext() {
+        return mContent;
+    }
+
+    public WebView getWebView(){
         return mDelegate.getWebView();
     }
-    public Context getContext() {
-        return mContext;
-    }
 
-    public void setContext(Context mContext) {
-        this.mContext = mContext;
+    public void setContext(Context mContent) {
+        this.mContent = mContent;
     }
 
     public String getAction() {

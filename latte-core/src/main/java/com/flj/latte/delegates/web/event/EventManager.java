@@ -5,17 +5,17 @@ import android.support.annotation.NonNull;
 import java.util.HashMap;
 
 /**
- * Created by wangpeng on 2018/5/25.
- * 事件管理
+ * Created by 傅令杰
  */
 
 public class EventManager {
+
     private static final HashMap<String, Event> EVENTS = new HashMap<>();
 
     private EventManager() {
     }
 
-    private static final class Holder {
+    private static class Holder {
         private static final EventManager INSTANCE = new EventManager();
     }
 
@@ -28,9 +28,9 @@ public class EventManager {
         return this;
     }
 
-    public Event createEvent(String action) {
+    public Event createEvent(@NonNull String action) {
         final Event event = EVENTS.get(action);
-        if (event==null){
+        if (event == null) {
             return new UndefineEvent();
         }
         return event;

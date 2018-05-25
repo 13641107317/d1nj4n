@@ -1,12 +1,16 @@
 package com.flj.latte.app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
+import android.support.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
+import com.flj.latte.delegates.web.event.Event;
+import com.flj.latte.delegates.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,27 +18,27 @@ import java.util.HashMap;
 import okhttp3.Interceptor;
 
 /**
- * Created by mac on 2018/5/15.
+ * Created by 傅令杰 on 2017/3/29
  */
 
-public class Configurator {
-    private static final String TAG = "way";
-    private static final HashMap<Object, Object> LATTER_CONFIGS = new HashMap<>();
+public final class Configurator {
+
+    private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
     private static final Handler HANDLER = new Handler();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
-        LATTER_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
-        LATTER_CONFIGS.put(ConfigKeys.HANDLER.name(), HANDLER);
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
+        LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
-    public static Configurator getInstance() {
+    static Configurator getInstance() {
         return Holder.INSTANCE;
     }
 
-    final HashMap<Object, Object> getLatterConfigs() {
-        return LATTER_CONFIGS;
+    final HashMap<Object, Object> getLatteConfigs() {
+        return LATTE_CONFIGS;
     }
 
     private static class Holder {
@@ -43,16 +47,18 @@ public class Configurator {
 
     public final void configure() {
         initIcons();
-        LATTER_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
+        Logger.addLogAdapter(new AndroidLogAdapter());
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
+        Utils.init(Latte.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host) {
-        LATTER_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
+        LATTE_CONFIGS.put(ConfigKeys.API_HOST, host);
         return this;
-
     }
+
     public final Configurator withLoaderDelayed(long delayed) {
-        LATTER_CONFIGS.put(ConfigKeys.LOADER_DELAYED.name(), delayed);
+        LATTE_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
         return this;
     }
 
@@ -69,43 +75,59 @@ public class Configurator {
         ICONS.add(descriptor);
         return this;
     }
+
     public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
-        LATTER_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(),INTERCEPTORS);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
-    public final Configurator withWechatAppId(String appId) {
-        LATTER_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID.name(),appId);
-        return this;
-    }
-    public final Configurator withWechatAppSecret(String appSecret) {
-        LATTER_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET.name(),appSecret);
-        return this;
-    }
-    public final Configurator withActivity(Activity activity) {
-        LATTER_CONFIGS.put(ConfigKeys.ACTIVITY.name(),activity);
-        return this;
-    }
-    public final Configurator withInterceptorS(ArrayList<Interceptor> interceptors) {
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
-        LATTER_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(),INTERCEPTORS);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
-    private void checkConfigurator() {
-        final boolean isReady = (boolean) LATTER_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
+
+    public final Configurator withWeChatAppId(String appId) {
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, appId);
+        return this;
+    }
+
+    public final Configurator withWeChatAppSecret(String appSecret) {
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, appSecret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
+        return this;
+    }
+
+    public Configurator withJavascriptInterface(@NonNull String name) {
+        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
+
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
+        return this;
+    }
+
+    private void checkConfiguration() {
+        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY);
         if (!isReady) {
-            throw new RuntimeException("configurator is not ready,call configurator");
+            throw new RuntimeException("Configuration is not ready,call configure");
         }
     }
 
 
     final <T> T getConfiguration(Object key) {
-        checkConfigurator();
-        final Object value = LATTER_CONFIGS.get(key);
+        checkConfiguration();
+        final Object value = LATTE_CONFIGS.get(key);
         if (value == null) {
             throw new NullPointerException(key.toString() + " IS NULL");
         }
-        return (T) LATTER_CONFIGS.get(key);
+        return (T) LATTE_CONFIGS.get(key);
     }
-
 }

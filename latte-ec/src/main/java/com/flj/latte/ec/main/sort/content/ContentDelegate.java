@@ -5,31 +5,30 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
 
+import com.flj.latte.delegates.LatteDelegate;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
-import com.flj.latte.delegates.LatteDelegate;
+import com.flj.latte.net.RestClient;
+import com.flj.latte.net.callback.ISuccess;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import butterknife.BindView;
 
 /**
- * Created by wp on 2018/5/23.
+ * Created by 傅令杰
  */
 
 public class ContentDelegate extends LatteDelegate {
-    private static final String TAG = "demo";
-    private static String ARG_CONTENT_ID = "CONTENT_ID";
+
+    private static final String ARG_CONTENT_ID = "CONTENT_ID";
+    private int mContentId = -1;
+    private List<SectionBean> mData = null;
+
     @BindView(R2.id.rv_list_content)
     RecyclerView mRecyclerView = null;
-    private int mContentId = -1;
-    private List<SectionBean> sectionBeans = null;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,50 +42,31 @@ public class ContentDelegate extends LatteDelegate {
     public static ContentDelegate newInstance(int contentId) {
         final Bundle args = new Bundle();
         args.putInt(ARG_CONTENT_ID, contentId);
-        final ContentDelegate contentDelegate = new ContentDelegate();
-        contentDelegate.setArguments(args);
-        return contentDelegate;
+        final ContentDelegate delegate = new ContentDelegate();
+        delegate.setArguments(args);
+        return delegate;
     }
 
     @Override
     public Object setLayout() {
-        return R.layout.delegate_content;
+        return R.layout.delegate_list_content;
     }
 
     private void initData() {
-        InputStream in = null;
-        try {
-            in = getContext().getAssets().open("test_json");
-            String josn = inputStreamToString(in);
-            sectionBeans = new SectionDataConverter().converter(josn);
-            final SectionAdapter adapter = new SectionAdapter(R.layout.item_section_content, R.layout.item_section_header, sectionBeans);
-            if (adapter != null) {
-                mRecyclerView.setAdapter(adapter);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String inputStreamToString(InputStream in) {
-        StringBuffer out = new StringBuffer();
-        byte[] b = new byte[1024];
-        try {
-            for (int n; (n = in.read(b)) != -1; ) {
-                out.append(new String(b, 0, n));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (in != null)
-                    in.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return out.toString();
+        RestClient.builder()
+                .url("sort_content_list.php?contentId=" + mContentId)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        mData = new SectionDataConverter().convert(response);
+                        final SectionAdapter sectionAdapter =
+                                new SectionAdapter(R.layout.item_section_content,
+                                        R.layout.item_section_header, mData);
+                        mRecyclerView.setAdapter(sectionAdapter);
+                    }
+                })
+                .build()
+                .get();
     }
 
     @Override
@@ -96,5 +76,4 @@ public class ContentDelegate extends LatteDelegate {
         mRecyclerView.setLayoutManager(manager);
         initData();
     }
-
 }

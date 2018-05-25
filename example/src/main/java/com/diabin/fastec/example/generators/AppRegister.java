@@ -4,12 +4,12 @@ import com.flj.latte.annotations.AppRegisterGenerator;
 import com.flj.latte.wechat.templates.AppRegisterTemplate;
 
 /**
- * Created by wp on 2018/5/21.
+ * Created by 傅令杰 on 2017/4/22
  */
+@SuppressWarnings("unused")
 @AppRegisterGenerator(
         packageName = "com.diabin.fastec.example",
         registerTemplate = AppRegisterTemplate.class
 )
 public interface AppRegister {
-
 }

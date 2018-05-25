@@ -5,10 +5,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 /**
- * Created by wp on 2018/5/24.
+ * Created by 傅令杰
  */
 
 public interface IWebViewInitializer {
+
     WebView initWebView(WebView webView);
 
     WebViewClient initWebViewClient();

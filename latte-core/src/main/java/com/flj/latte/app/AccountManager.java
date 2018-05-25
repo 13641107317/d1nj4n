@@ -3,37 +3,29 @@ package com.flj.latte.app;
 import com.flj.latte.util.storage.LattePreference;
 
 /**
- * Created by wp on 2018/5/18.
- *
+ * Created by 傅令杰 on 2017/4/22
  */
 
 public class AccountManager {
-    //是否登录状态
-    private enum Tag {
+
+    private enum SignTag {
         SIGN_TAG
     }
 
-    /**
-     * 判断用户登录状态,登录成功后调用
-     *
-     * @param state
-     */
+    //保存用户登录状态，登录后调用
     public static void setSignState(boolean state) {
-        LattePreference.setAppFlag(Tag.SIGN_TAG.name(), state);
+        LattePreference.setAppFlag(SignTag.SIGN_TAG.name(), state);
     }
-
 
     private static boolean isSignIn() {
-
-        return LattePreference.getAppFlag(Tag.SIGN_TAG.name());
+        return LattePreference.getAppFlag(SignTag.SIGN_TAG.name());
     }
 
-    public static void checkAccount(IUserCheck iUserCheck) {
-
+    public static void checkAccount(IUserChecker checker) {
         if (isSignIn()) {
-            iUserCheck.onSignIn();
+            checker.onSignIn();
         } else {
-            iUserCheck.onNotSignIn();
+            checker.onNotSignIn();
         }
     }
 }
