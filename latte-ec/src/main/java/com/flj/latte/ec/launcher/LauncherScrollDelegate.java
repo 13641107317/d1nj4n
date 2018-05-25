@@ -8,10 +8,10 @@ import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
-import com.diabin.latte.ec.R;
 import com.flj.latte.app.AccountManager;
-import com.flj.latte.app.IUserCheck;
+import com.flj.latte.app.IUserChecker;
 import com.flj.latte.delegates.LatteDelegate;
+import com.diabin.latte.ec.R;
 import com.flj.latte.ui.launcher.ILauncherListener;
 import com.flj.latte.ui.launcher.LauncherHolderCreator;
 import com.flj.latte.ui.launcher.OnLauncherFinishTag;
@@ -21,22 +21,14 @@ import com.flj.latte.util.storage.LattePreference;
 import java.util.ArrayList;
 
 /**
- * Created by wp on 2018/5/18.
+ * Created by wp on 2017/4/22
  */
 
 public class LauncherScrollDelegate extends LatteDelegate implements OnItemClickListener {
 
     private ConvenientBanner<Integer> mConvenientBanner = null;
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
-    private ILauncherListener iLauncherListener = null;
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof ILauncherListener) {
-            iLauncherListener = (ILauncherListener) activity;
-        }
-    }
+    private ILauncherListener mILauncherListener = null;
 
     private void initBanner() {
         INTEGERS.add(R.mipmap.launcher_01);
@@ -44,19 +36,25 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
         INTEGERS.add(R.mipmap.launcher_03);
         INTEGERS.add(R.mipmap.launcher_04);
         INTEGERS.add(R.mipmap.launcher_05);
-        mConvenientBanner.setPages(new LauncherHolderCreator(), INTEGERS)
-
+        mConvenientBanner
+                .setPages(new LauncherHolderCreator(), INTEGERS)
                 .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})
-                //设置水平居中
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(this)
-                //设置可以循环
                 .setCanLoop(false);
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener) {
+            mILauncherListener = (ILauncherListener) activity;
+        }
+    }
+
+    @Override
     public Object setLayout() {
-        mConvenientBanner = new ConvenientBanner<Integer>(getContext());
+        mConvenientBanner = new ConvenientBanner<>(getContext());
         return mConvenientBanner;
     }
 
@@ -65,26 +63,24 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
         initBanner();
     }
 
-
     @Override
     public void onItemClick(int position) {
-
-        //如果点击的是最后一页
+        //如果点击的是最后一个
         if (position == INTEGERS.size() - 1) {
             LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
-            //检查用户是否登录
-            AccountManager.checkAccount(new IUserCheck() {
+            //检查用户是否已经登录
+            AccountManager.checkAccount(new IUserChecker() {
                 @Override
                 public void onSignIn() {
-                    if (iLauncherListener != null) {
-                        iLauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
                     }
                 }
 
                 @Override
                 public void onNotSignIn() {
-                    if (iLauncherListener != null) {
-                        iLauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
                     }
                 }
             });

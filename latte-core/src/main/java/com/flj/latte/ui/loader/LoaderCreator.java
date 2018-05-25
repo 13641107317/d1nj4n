@@ -1,13 +1,18 @@
 package com.flj.latte.ui.loader;
+
 import android.content.Context;
+
 import com.wang.avi.AVLoadingIndicatorView;
 import com.wang.avi.Indicator;
+
 import java.util.WeakHashMap;
+
 /**
- * Created by wp on 2018/5/17.
- * 缓存loading 避免每次同伙反射方式获取
+ * Created by wp on 2017/4/2
  */
-public final class LoaderCreator {
+
+final class LoaderCreator {
+
     private static final WeakHashMap<String, Indicator> LOADING_MAP = new WeakHashMap<>();
 
     static AVLoadingIndicatorView create(String type, Context context) {

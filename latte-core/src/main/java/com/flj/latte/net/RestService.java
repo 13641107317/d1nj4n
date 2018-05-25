@@ -1,6 +1,6 @@
 package com.flj.latte.net;
 
-import java.util.Map;
+import java.util.WeakHashMap;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -20,38 +20,35 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
- * Created by wp on 2018/5/16.
+ * Created by wp on 2017/4/2
  */
-
 public interface RestService {
+
     @GET
-    Call<String> get(@Url String url, @QueryMap Map<String, Object> params);
+    Call<String> get(@Url String url, @QueryMap WeakHashMap<String, Object> params);
 
     @FormUrlEncoded
     @POST
-    Call<String> post(@Url String url, @FieldMap Map<String, Object> params);
+    Call<String> post(@Url String url, @FieldMap WeakHashMap<String, Object> params);
 
-    //post传入原始数据
     @POST
     Call<String> postRaw(@Url String url, @Body RequestBody body);
 
     @FormUrlEncoded
     @PUT
-    Call<String> put(@Url String url, @FieldMap Map<String, Object> params);
+    Call<String> put(@Url String url, @FieldMap WeakHashMap<String, Object> params);
 
-    //put传入原始数据
     @PUT
     Call<String> putRaw(@Url String url, @Body RequestBody body);
 
     @DELETE
-    Call<String> delete(@Url String url, @QueryMap Map<String, Object> params);
+    Call<String> delete(@Url String url, @QueryMap WeakHashMap<String, Object> params);
 
-    @Streaming//一边下载一边写文件
+    @Streaming
     @GET
-    Call<ResponseBody> downLoad(@Url String url, @QueryMap Map<String, Object> params);
+    Call<ResponseBody> download(@Url String url, @QueryMap WeakHashMap<String, Object> params);
 
     @Multipart
     @POST
-    Call<String> upLoad(@Url String url, @Part MultipartBody.Part file);
-
+    Call<String> upload(@Url String url, @Part MultipartBody.Part file);
 }

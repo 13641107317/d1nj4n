@@ -2,8 +2,6 @@ package com.flj.latte.compiler;
 
 import com.flj.latte.annotations.AppRegisterGenerator;
 import com.flj.latte.annotations.EntryGenerator;
-
-
 import com.flj.latte.annotations.PayEntryGenerator;
 import com.google.auto.service.AutoService;
 
@@ -14,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -22,13 +21,14 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 
-
 /**
- * Created by mac on 2018/5/18.
+ * Created by wp on 2017/4/22
  */
+
 @SuppressWarnings("unused")
-@AutoService(Process.class)
-public class LatteProcessor extends AbstractProcessor {
+@AutoService(Processor.class)
+public final class LatteProcessor extends AbstractProcessor {
+
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         final Set<String> types = new LinkedHashSet<>();
@@ -38,6 +38,7 @@ public class LatteProcessor extends AbstractProcessor {
         }
         return types;
     }
+
     private Set<Class<? extends Annotation>> getSupportedAnnotations() {
         final Set<Class<? extends Annotation>> annotations = new LinkedHashSet<>();
         annotations.add(EntryGenerator.class);
@@ -45,6 +46,7 @@ public class LatteProcessor extends AbstractProcessor {
         annotations.add(AppRegisterGenerator.class);
         return annotations;
     }
+
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment env) {
         generateEntryCode(env);

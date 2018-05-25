@@ -3,21 +3,21 @@ package com.flj.latte.util.timer;
 import java.util.TimerTask;
 
 /**
- * Created by mac on 2018/5/17.
+ * Created by wp on 2017/4/22
  */
 
 public class BaseTimerTask extends TimerTask {
-    private ITimerListener iTimerListener =null;
 
-    public BaseTimerTask(ITimerListener iTimerListener) {
-        this.iTimerListener = iTimerListener;
+    private ITimerListener mITimerListener = null;
+
+    public BaseTimerTask(ITimerListener timerListener) {
+        this.mITimerListener = timerListener;
     }
 
     @Override
     public void run() {
-
-        if (iTimerListener!=null){
-            iTimerListener.onTimer();
+        if (mITimerListener != null) {
+            mITimerListener.onTimer();
         }
     }
 }

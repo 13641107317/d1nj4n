@@ -1,47 +1,36 @@
 package com.flj.latte.ec.main.sort.content;
 
 /**
- * Created by wp on 2018/5/24.
+ * Created by wp
  */
 
 public class SectionContentItemEntity {
-    private int goodsId = 0;
-    private String goodsUrl = null;
-    private String goodsName = null;
 
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public SectionContentItemEntity setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
-        return this;
-    }
+    private int mGoodsId = 0;
+    private String mGoodsName = null;
+    private String mGoodsThumb = null;
 
     public int getGoodsId() {
-        return goodsId;
+        return mGoodsId;
     }
 
-    public SectionContentItemEntity setGoodsId(int goodsId) {
-        this.goodsId = goodsId;
-        return this;
+    public void setGoodsId(int goodsId) {
+        this.mGoodsId = goodsId;
     }
 
-    public String getGoodsUrl() {
-        return goodsUrl;
+    public String getGoodsName() {
+        return mGoodsName;
     }
 
-    public SectionContentItemEntity setGoodsUrl(String goodsUrl) {
-        this.goodsUrl = goodsUrl;
-        return this;
+    public void setGoodsName(String goodsName) {
+        this.mGoodsName = goodsName;
     }
 
-    @Override
-    public String toString() {
-        return "SectionContentItemEntity{" +
-                "goodsId=" + goodsId +
-                ", goodsUrl='" + goodsUrl + '\'' +
-                ", goodsName='" + goodsName + '\'' +
-                '}';
+    public String getGoodsThumb() {
+        return mGoodsThumb;
+    }
+
+    public void setGoodsThumb(String goodsThumb) {
+        this.mGoodsThumb = goodsThumb;
     }
 }

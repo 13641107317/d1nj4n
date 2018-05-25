@@ -3,7 +3,7 @@ package com.flj.latte.net.callback;
 import android.os.Handler;
 
 import com.flj.latte.app.ConfigKeys;
-import com.flj.latte.app.Latter;
+import com.flj.latte.app.Latte;
 import com.flj.latte.net.RestCreator;
 import com.flj.latte.ui.loader.LatteLoader;
 import com.flj.latte.ui.loader.LoaderStyle;
@@ -13,26 +13,24 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by wp on 2018/5/16.
+ * Created by wp on 2017/4/2
  */
 
-public class RequestCallBacks implements Callback<String> {
+public final class RequestCallbacks implements Callback<String> {
 
     private final IRequest REQUEST;
     private final ISuccess SUCCESS;
-    private final IError ERROR;
     private final IFailure FAILURE;
-    //进度条
+    private final IError ERROR;
     private final LoaderStyle LOADER_STYLE;
-    // 进度条延迟
-    private static final Handler HANDLER = new Handler();
+    private static final Handler HANDLER = Latte.getHandler();
 
-    public RequestCallBacks(IRequest request, ISuccess success, IError error, IFailure failure, LoaderStyle loaderstyle) {
+    public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error, LoaderStyle style) {
         this.REQUEST = request;
         this.SUCCESS = success;
-        this.ERROR = error;
         this.FAILURE = failure;
-        this.LOADER_STYLE = loaderstyle;
+        this.ERROR = error;
+        this.LOADER_STYLE = style;
     }
 
     @Override
@@ -48,24 +46,24 @@ public class RequestCallBacks implements Callback<String> {
                 ERROR.onError(response.code(), response.message());
             }
         }
-        stopLoading();
 
+        onRequestFinish();
     }
 
     @Override
     public void onFailure(Call<String> call, Throwable t) {
-
         if (FAILURE != null) {
             FAILURE.onFailure();
         }
         if (REQUEST != null) {
             REQUEST.onRequestEnd();
         }
-        stopLoading();
+
+        onRequestFinish();
     }
 
-    private void stopLoading() {
-        final long delayed = Latter.getConfiguration(ConfigKeys.LOADER_DELAYED.name());
+    private void onRequestFinish() {
+        final long delayed = Latte.getConfiguration(ConfigKeys.LOADER_DELAYED);
         if (LOADER_STYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override
@@ -74,7 +72,6 @@ public class RequestCallBacks implements Callback<String> {
                     LatteLoader.stopLoading();
                 }
             }, delayed);
-
         }
     }
 }

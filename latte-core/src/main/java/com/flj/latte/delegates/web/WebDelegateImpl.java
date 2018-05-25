@@ -4,20 +4,29 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
+import com.flj.latte.delegates.IPageLoadListener;
+import com.flj.latte.delegates.web.chromeclient.WebChromeClientImpl;
+import com.flj.latte.delegates.web.client.WebViewClientImpl;
 import com.flj.latte.delegates.web.route.RouteKeys;
+import com.flj.latte.delegates.web.route.Router;
 
 /**
- * Created by wp on 2018/5/24.
+ * Created by wp
  */
 
 public class WebDelegateImpl extends WebDelegate {
 
+    private IPageLoadListener mIPageLoadListener = null;
+
     public static WebDelegateImpl create(String url) {
-        final Bundle bundle = new Bundle();
-        bundle.putString(RouteKeys.URL.name(), url);
+        final Bundle args = new Bundle();
+        args.putString(RouteKeys.URL.name(), url);
         final WebDelegateImpl delegate = new WebDelegateImpl();
-        delegate.setArguments(bundle);
+        delegate.setArguments(args);
         return delegate;
     }
 
@@ -26,16 +35,37 @@ public class WebDelegateImpl extends WebDelegate {
         return getWebView();
     }
 
+    public void setPageLoadListener(IPageLoadListener listener) {
+        this.mIPageLoadListener = listener;
+    }
+
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-
         if (getUrl() != null) {
-            //用原生方式模拟web跳转并加载页面
+            //用原生的方式模拟Web跳转并进行页面加载
+            Router.getInstance().loadPage(this, getUrl());
         }
     }
 
     @Override
-    public IWebViewInitializer setIWebViewInitializer() {
-        return null;
+    public IWebViewInitializer setInitializer() {
+        return this;
+    }
+
+    @Override
+    public WebView initWebView(WebView webView) {
+        return new WebViewInitializer().createWebView(webView);
+    }
+
+    @Override
+    public WebViewClient initWebViewClient() {
+        final WebViewClientImpl client = new WebViewClientImpl(this);
+        client.setPageLoadListener(mIPageLoadListener);
+        return client;
+    }
+
+    @Override
+    public WebChromeClient initWebChromeClient() {
+        return new WebChromeClientImpl();
     }
 }

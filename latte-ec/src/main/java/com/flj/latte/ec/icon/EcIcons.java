@@ -3,8 +3,7 @@ package com.flj.latte.ec.icon;
 import com.joanzapata.iconify.Icon;
 
 /**
- * Created by wp
- *
+ * Created by wp on 2017/3/29
  */
 
 public enum EcIcons implements Icon {

@@ -3,20 +3,21 @@ package com.flj.latte.ec.main.index;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.flj.latte.ui.recycle.DataConverter;
-import com.flj.latte.ui.recycle.ItemType;
-import com.flj.latte.ui.recycle.MultipleFields;
-import com.flj.latte.ui.recycle.MultipleItemEntity;
+import com.flj.latte.ui.recycler.DataConverter;
+import com.flj.latte.ui.recycler.ItemType;
+import com.flj.latte.ui.recycler.MultipleFields;
+import com.flj.latte.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
+
 /**
- * Created by wp on 2018/5/22.
- * 首页数据解析
+ * Created by wp
  */
 
-public class IndexDataConverter extends DataConverter {
+public final class IndexDataConverter extends DataConverter {
+
     @Override
-    public ArrayList<MultipleItemEntity> converter() {
+    public ArrayList<MultipleItemEntity> convert() {
         final JSONArray dataArray = JSON.parseObject(getJsonData()).getJSONArray("data");
         final int size = dataArray.size();
         for (int i = 0; i < size; i++) {
@@ -45,6 +46,7 @@ public class IndexDataConverter extends DataConverter {
                     bannerImages.add(banner);
                 }
             }
+
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ITEM_TYPE,type)
                     .setField(MultipleFields.SPAN_SIZE,spanSize)
@@ -54,9 +56,10 @@ public class IndexDataConverter extends DataConverter {
                     .setField(MultipleFields.BANNERS,bannerImages)
                     .build();
 
-            ENTITES.add(entity);
+            ENTITIES.add(entity);
 
         }
-        return ENTITES;
+
+        return ENTITIES;
     }
 }
