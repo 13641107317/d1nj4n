@@ -12,11 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
 import com.flj.latte.delegates.bottom.BottomItemDelegate;
 import com.flj.latte.ec.main.EcBottomDelegate;
 import com.flj.latte.ec.main.index.search.SearchDelegate;
+import com.flj.latte.net.rx.RxRestClient;
 import com.flj.latte.ui.recycler.BaseDecoration;
 import com.flj.latte.ui.refresh.RefreshHandler;
 import com.flj.latte.util.callback.CallbackManager;
@@ -27,6 +29,10 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by wp
@@ -66,6 +72,40 @@ public class IndexDelegate extends BottomItemDelegate implements View.OnFocusCha
                     }
                 });
         mSearchView.setOnFocusChangeListener(this);
+
+        onCall();
+
+
+    }
+
+    private void onCall() {
+        RxRestClient.builder().url("http://www.baidu.com")
+                .loader(getContext())
+                .build().get()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+
+                        ToastUtils.showLong(s);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     private void initRefreshLayout() {
