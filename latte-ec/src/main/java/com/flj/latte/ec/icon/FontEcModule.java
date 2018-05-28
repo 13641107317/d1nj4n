@@ -4,7 +4,7 @@ import com.joanzapata.iconify.Icon;
 import com.joanzapata.iconify.IconFontDescriptor;
 
 /**
- * Created by wp
+ * Created by wp on 2017/3/29
  */
 
 public class FontEcModule implements IconFontDescriptor {

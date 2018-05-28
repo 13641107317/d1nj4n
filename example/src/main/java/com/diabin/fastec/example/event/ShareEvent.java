@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.flj.latte.delegates.web.event.Event;
 import com.flj.latte.util.log.LatteLogger;
 
-
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
@@ -17,7 +16,9 @@ public class ShareEvent extends Event {
 
     @Override
     public String execute(String params) {
+
         LatteLogger.json("ShareEvent", params);
+
         final JSONObject object = JSON.parseObject(params).getJSONObject("params");
         final String title = object.getString("title");
         final String url = object.getString("url");

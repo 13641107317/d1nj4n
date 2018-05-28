@@ -5,7 +5,7 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/22
  */
 @Entity(nameInDb = "user_profile")
 public class UserProfile {

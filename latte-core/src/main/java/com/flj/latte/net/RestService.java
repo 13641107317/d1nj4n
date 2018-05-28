@@ -20,7 +20,7 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/2
  */
 public interface RestService {
 

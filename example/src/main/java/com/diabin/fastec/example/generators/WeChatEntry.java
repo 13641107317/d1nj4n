@@ -4,7 +4,7 @@ import com.flj.latte.annotations.EntryGenerator;
 import com.flj.latte.wechat.templates.WXEntryTemplate;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/22
  */
 
 @SuppressWarnings("unused")

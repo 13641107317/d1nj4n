@@ -3,7 +3,7 @@ package com.flj.latte.app;
 import com.flj.latte.util.storage.LattePreference;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/22
  */
 
 public class AccountManager {

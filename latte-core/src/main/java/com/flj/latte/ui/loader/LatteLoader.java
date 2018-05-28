@@ -13,7 +13,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import java.util.ArrayList;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/2
  */
 
 public class LatteLoader {

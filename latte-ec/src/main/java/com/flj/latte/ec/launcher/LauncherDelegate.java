@@ -27,7 +27,7 @@ import butterknife.OnClick;
 
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/22
  */
 
 public class LauncherDelegate extends LatteDelegate implements ITimerListener {

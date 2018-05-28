@@ -8,7 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.flj.latte.app.Latte;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/22
  */
 
 public final class LattePreference {

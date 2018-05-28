@@ -17,13 +17,15 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import cn.jpush.android.api.JPushInterface;
 
 /**
- * Created by wp
+ * Created by wp on 2017/3/29
  */
 public class ExampleApp extends MultiDexApplication {
 
 
+
     @Override
     public void onCreate() {
+
         super.onCreate();
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())

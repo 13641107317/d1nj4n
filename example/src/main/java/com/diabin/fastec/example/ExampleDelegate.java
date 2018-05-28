@@ -10,7 +10,7 @@ import com.flj.latte.delegates.LatteDelegate;
 import butterknife.OnClick;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/2
  */
 
 public class ExampleDelegate extends LatteDelegate {

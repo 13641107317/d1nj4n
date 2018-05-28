@@ -7,7 +7,7 @@ import com.flj.latte.ec.database.DatabaseManager;
 import com.flj.latte.ec.database.UserProfile;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/22
  */
 
 public class SignHandler {

@@ -7,7 +7,7 @@ import android.view.View;
 import com.bigkoo.convenientbanner.holder.Holder;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/22
  */
 
 public class LauncherHolder implements Holder<Integer> {

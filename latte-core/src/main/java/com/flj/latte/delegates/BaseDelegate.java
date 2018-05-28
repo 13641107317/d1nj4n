@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.flj.latte.activities.ProxyActivity;
+import com.gyf.barlibrary.ImmersionBar;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,7 +22,7 @@ import me.yokeyword.fragmentation.SupportFragmentDelegate;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/2
  */
 
 public abstract class BaseDelegate extends Fragment implements ISupportFragment {
@@ -30,6 +31,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     protected FragmentActivity _mActivity = null;
     @SuppressWarnings("SpellCheckingInspection")
     private Unbinder mUnbinder = null;
+    private ImmersionBar mImmersionBar;
 
     public abstract Object setLayout();
 
@@ -53,6 +55,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         DELEGATE.onActivityCreated(savedInstanceState);
+
     }
 
     @Override
@@ -112,6 +115,8 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
         if (mUnbinder != null) {
             mUnbinder.unbind();
         }
+        if (mImmersionBar != null)
+            mImmersionBar.destroy();
     }
 
     @Override

@@ -6,7 +6,7 @@ import android.util.DisplayMetrics;
 import com.flj.latte.app.Latte;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/2
  */
 
 public final class DimenUtil {

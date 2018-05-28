@@ -12,7 +12,7 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 /**
- * Created by wp 5
+ * Created by wp on 2017/4/25
  */
 
 public abstract class BaseWXEntryActivity extends BaseWXActivity {

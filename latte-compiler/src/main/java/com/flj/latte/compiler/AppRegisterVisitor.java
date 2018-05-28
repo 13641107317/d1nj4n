@@ -12,7 +12,7 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleAnnotationValueVisitor7;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/22
  */
 final class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
 

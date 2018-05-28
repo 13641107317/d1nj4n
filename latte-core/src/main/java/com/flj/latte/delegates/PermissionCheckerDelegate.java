@@ -25,7 +25,7 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/2
  */
 
 @RuntimePermissions

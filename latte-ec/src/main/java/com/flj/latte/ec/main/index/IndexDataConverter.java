@@ -46,6 +46,7 @@ public final class IndexDataConverter extends DataConverter {
                     bannerImages.add(banner);
                 }
             }
+
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ITEM_TYPE,type)
                     .setField(MultipleFields.SPAN_SIZE,spanSize)

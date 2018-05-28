@@ -21,7 +21,7 @@ import com.flj.latte.util.storage.LattePreference;
 import java.util.ArrayList;
 
 /**
- * Created by wp
+ * Created by wp on 2017/4/22
  */
 
 public class LauncherScrollDelegate extends LatteDelegate implements OnItemClickListener {

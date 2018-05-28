@@ -22,6 +22,7 @@ public class SectionDataConverter {
             final JSONObject data = dataArray.getJSONObject(i);
             final int id = data.getInteger("id");
             final String title = data.getString("section");
+
             //添加title
             final SectionBean sectionTitleBean = new SectionBean(true, title);
             sectionTitleBean.setId(id);

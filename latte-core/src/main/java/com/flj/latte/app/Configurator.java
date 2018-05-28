@@ -18,7 +18,7 @@ import java.util.HashMap;
 import okhttp3.Interceptor;
 
 /**
- * Created by wp
+ * Created by wp on 2017/3/29
  */
 
 public final class Configurator {
@@ -121,7 +121,7 @@ public final class Configurator {
         }
     }
 
-
+    @SuppressWarnings("unchecked")
     final <T> T getConfiguration(Object key) {
         checkConfiguration();
         final Object value = LATTE_CONFIGS.get(key);
