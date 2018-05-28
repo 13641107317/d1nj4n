@@ -33,7 +33,7 @@ public class SortDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-       getProxyActivity().setOrChangeTranslucentColor(mToolbar, view, getResources().getColor(R.color.app_main));
+       getProxyActivity().setOrChangeTranslucentColor(mToolbar, view, getProxyActivity().getResources().getColor(R.color.app_main));
     }
 
     @Override
